@@ -3,18 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5ECBBAF8C5B65D1A833302C4 /* Pods_LanguageCardsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCF3C195DEF36A10158F7428 /* Pods_LanguageCardsApp.framework */; };
+		D7A6D032981E499E6FC37FBD /* Pods_LanguageCardsAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A365010DBE618924250015 /* Pods_LanguageCardsAppTests.framework */; };
 		F59CE92C23411E3D007A5303 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92B23411E3D007A5303 /* AppDelegate.swift */; };
-		F59CE92E23411E3D007A5303 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92D23411E3D007A5303 /* SceneDelegate.swift */; };
 		F59CE93123411E3D007A5303 /* LanguageCardsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92F23411E3D007A5303 /* LanguageCardsApp.xcdatamodeld */; };
-		F59CE93323411E3D007A5303 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE93223411E3D007A5303 /* ContentView.swift */; };
 		F59CE93523411E3F007A5303 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F59CE93423411E3F007A5303 /* Assets.xcassets */; };
-		F59CE93823411E3F007A5303 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F59CE93723411E3F007A5303 /* Preview Assets.xcassets */; };
 		F59CE93B23411E3F007A5303 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F59CE93923411E3F007A5303 /* LaunchScreen.storyboard */; };
 		F59CE94623411E40007A5303 /* LanguageCardsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE94523411E40007A5303 /* LanguageCardsAppTests.swift */; };
+		F59CE95623412134007A5303 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE95523412134007A5303 /* Constants.swift */; };
+		F59CE958234121F0007A5303 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F59CE957234121F0007A5303 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,18 +29,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5AF2710506D5B4CDE00E43AF /* Pods-LanguageCardsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LanguageCardsApp.debug.xcconfig"; path = "Target Support Files/Pods-LanguageCardsApp/Pods-LanguageCardsApp.debug.xcconfig"; sourceTree = "<group>"; };
+		5F3481C6888E92D1751CAA64 /* Pods-LanguageCardsAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LanguageCardsAppTests.debug.xcconfig"; path = "Target Support Files/Pods-LanguageCardsAppTests/Pods-LanguageCardsAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		62A365010DBE618924250015 /* Pods_LanguageCardsAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LanguageCardsAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ADDDCBA8F4987FBD947116B /* Pods-LanguageCardsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LanguageCardsApp.release.xcconfig"; path = "Target Support Files/Pods-LanguageCardsApp/Pods-LanguageCardsApp.release.xcconfig"; sourceTree = "<group>"; };
+		CCF3C195DEF36A10158F7428 /* Pods_LanguageCardsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LanguageCardsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59CE92823411E3D007A5303 /* LanguageCardsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LanguageCardsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59CE92B23411E3D007A5303 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F59CE92D23411E3D007A5303 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F59CE93023411E3D007A5303 /* LanguageCardsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LanguageCardsApp.xcdatamodel; sourceTree = "<group>"; };
-		F59CE93223411E3D007A5303 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F59CE93423411E3F007A5303 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F59CE93723411E3F007A5303 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F59CE93A23411E3F007A5303 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F59CE93C23411E3F007A5303 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F59CE94123411E40007A5303 /* LanguageCardsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LanguageCardsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59CE94523411E40007A5303 /* LanguageCardsAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCardsAppTests.swift; sourceTree = "<group>"; };
 		F59CE94723411E40007A5303 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F59CE95523412134007A5303 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F59CE957234121F0007A5303 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F620BB4FCF5BE5DD6F7C6C93 /* Pods-LanguageCardsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LanguageCardsAppTests.release.xcconfig"; path = "Target Support Files/Pods-LanguageCardsAppTests/Pods-LanguageCardsAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ECBBAF8C5B65D1A833302C4 /* Pods_LanguageCardsApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,18 +61,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7A6D032981E499E6FC37FBD /* Pods_LanguageCardsAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0727B8A98ACC16CF4A575434 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CCF3C195DEF36A10158F7428 /* Pods_LanguageCardsApp.framework */,
+				62A365010DBE618924250015 /* Pods_LanguageCardsAppTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDA839F02A8A8F737A450CC2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5AF2710506D5B4CDE00E43AF /* Pods-LanguageCardsApp.debug.xcconfig */,
+				6ADDDCBA8F4987FBD947116B /* Pods-LanguageCardsApp.release.xcconfig */,
+				5F3481C6888E92D1751CAA64 /* Pods-LanguageCardsAppTests.debug.xcconfig */,
+				F620BB4FCF5BE5DD6F7C6C93 /* Pods-LanguageCardsAppTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F59CE91F23411E3D007A5303 = {
 			isa = PBXGroup;
 			children = (
+				F59CE957234121F0007A5303 /* Default-568h@2x.png */,
 				F59CE92A23411E3D007A5303 /* LanguageCardsApp */,
 				F59CE94423411E40007A5303 /* LanguageCardsAppTests */,
 				F59CE92923411E3D007A5303 /* Products */,
+				CDA839F02A8A8F737A450CC2 /* Pods */,
+				0727B8A98ACC16CF4A575434 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,24 +112,13 @@
 		F59CE92A23411E3D007A5303 /* LanguageCardsApp */ = {
 			isa = PBXGroup;
 			children = (
-				F59CE92B23411E3D007A5303 /* AppDelegate.swift */,
-				F59CE92D23411E3D007A5303 /* SceneDelegate.swift */,
-				F59CE93223411E3D007A5303 /* ContentView.swift */,
-				F59CE93423411E3F007A5303 /* Assets.xcassets */,
-				F59CE93923411E3F007A5303 /* LaunchScreen.storyboard */,
-				F59CE93C23411E3F007A5303 /* Info.plist */,
-				F59CE92F23411E3D007A5303 /* LanguageCardsApp.xcdatamodeld */,
-				F59CE93623411E3F007A5303 /* Preview Content */,
+				F59CE95023412071007A5303 /* App */,
+				F59CE95323412106007A5303 /* Data */,
+				F59CE9542341210C007A5303 /* Domain */,
+				F59CE952234120FC007A5303 /* Presentation */,
+				F59CE951234120E7007A5303 /* Resources */,
 			);
 			path = LanguageCardsApp;
-			sourceTree = "<group>";
-		};
-		F59CE93623411E3F007A5303 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				F59CE93723411E3F007A5303 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		F59CE94423411E40007A5303 /* LanguageCardsAppTests */ = {
@@ -110,6 +130,47 @@
 			path = LanguageCardsAppTests;
 			sourceTree = "<group>";
 		};
+		F59CE95023412071007A5303 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F59CE92B23411E3D007A5303 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F59CE951234120E7007A5303 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F59CE93423411E3F007A5303 /* Assets.xcassets */,
+				F59CE93923411E3F007A5303 /* LaunchScreen.storyboard */,
+				F59CE93C23411E3F007A5303 /* Info.plist */,
+				F59CE92F23411E3D007A5303 /* LanguageCardsApp.xcdatamodeld */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F59CE952234120FC007A5303 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		F59CE95323412106007A5303 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F59CE95523412134007A5303 /* Constants.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F59CE9542341210C007A5303 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,9 +178,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F59CE94A23411E40007A5303 /* Build configuration list for PBXNativeTarget "LanguageCardsApp" */;
 			buildPhases = (
+				4BD349D3874C34C5D615D655 /* [CP] Check Pods Manifest.lock */,
 				F59CE92423411E3D007A5303 /* Sources */,
 				F59CE92523411E3D007A5303 /* Frameworks */,
 				F59CE92623411E3D007A5303 /* Resources */,
+				587EB090EFF41ECC38651E61 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -134,6 +197,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F59CE94D23411E40007A5303 /* Build configuration list for PBXNativeTarget "LanguageCardsAppTests" */;
 			buildPhases = (
+				A5C7899D3DEB8DB49A293D89 /* [CP] Check Pods Manifest.lock */,
 				F59CE93D23411E40007A5303 /* Sources */,
 				F59CE93E23411E40007A5303 /* Frameworks */,
 				F59CE93F23411E40007A5303 /* Resources */,
@@ -192,8 +256,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F59CE93B23411E3F007A5303 /* LaunchScreen.storyboard in Resources */,
-				F59CE93823411E3F007A5303 /* Preview Assets.xcassets in Resources */,
 				F59CE93523411E3F007A5303 /* Assets.xcassets in Resources */,
+				F59CE958234121F0007A5303 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +270,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4BD349D3874C34C5D615D655 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LanguageCardsApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		587EB090EFF41ECC38651E61 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LanguageCardsApp/Pods-LanguageCardsApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LanguageCardsApp/Pods-LanguageCardsApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LanguageCardsApp/Pods-LanguageCardsApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5C7899D3DEB8DB49A293D89 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LanguageCardsAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F59CE92423411E3D007A5303 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -213,8 +341,7 @@
 			files = (
 				F59CE92C23411E3D007A5303 /* AppDelegate.swift in Sources */,
 				F59CE93123411E3D007A5303 /* LanguageCardsApp.xcdatamodeld in Sources */,
-				F59CE93323411E3D007A5303 /* ContentView.swift in Sources */,
-				F59CE92E23411E3D007A5303 /* SceneDelegate.swift in Sources */,
+				F59CE95623412134007A5303 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +425,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -352,7 +479,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -364,13 +491,13 @@
 		};
 		F59CE94B23411E40007A5303 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AF2710506D5B4CDE00E43AF /* Pods-LanguageCardsApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"LanguageCardsApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 6YXMN9C3HK;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = LanguageCardsApp/Info.plist;
+				INFOPLIST_FILE = LanguageCardsApp/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -378,19 +505,19 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sedinkin.vladislav.LanguageCardsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		F59CE94C23411E40007A5303 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6ADDDCBA8F4987FBD947116B /* Pods-LanguageCardsApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"LanguageCardsApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 6YXMN9C3HK;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = LanguageCardsApp/Info.plist;
+				INFOPLIST_FILE = LanguageCardsApp/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -398,12 +525,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sedinkin.vladislav.LanguageCardsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		F59CE94E23411E40007A5303 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F3481C6888E92D1751CAA64 /* Pods-LanguageCardsAppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -426,6 +554,7 @@
 		};
 		F59CE94F23411E40007A5303 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F620BB4FCF5BE5DD6F7C6C93 /* Pods-LanguageCardsAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
