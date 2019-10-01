@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		5ECBBAF8C5B65D1A833302C4 /* Pods_LanguageCardsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCF3C195DEF36A10158F7428 /* Pods_LanguageCardsApp.framework */; };
 		D7A6D032981E499E6FC37FBD /* Pods_LanguageCardsAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A365010DBE618924250015 /* Pods_LanguageCardsAppTests.framework */; };
+		F55F27ED2343CD2100DFB4A6 /* WordMean+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F27E52343CD2100DFB4A6 /* WordMean+CoreDataClass.swift */; };
+		F55F27EE2343CD2100DFB4A6 /* WordMean+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F27E62343CD2100DFB4A6 /* WordMean+CoreDataProperties.swift */; };
+		F55F27EF2343CD2100DFB4A6 /* WordTranslation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F27E72343CD2100DFB4A6 /* WordTranslation+CoreDataClass.swift */; };
+		F55F27F02343CD2100DFB4A6 /* WordTranslation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F27E82343CD2100DFB4A6 /* WordTranslation+CoreDataProperties.swift */; };
+		F55F27F12343CD2100DFB4A6 /* TranslationDictionary+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F27E92343CD2100DFB4A6 /* TranslationDictionary+CoreDataClass.swift */; };
+		F55F27F22343CD2100DFB4A6 /* TranslationDictionary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F27EA2343CD2100DFB4A6 /* TranslationDictionary+CoreDataProperties.swift */; };
+		F55F27F32343CD2100DFB4A6 /* WordSynonym+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F27EB2343CD2100DFB4A6 /* WordSynonym+CoreDataClass.swift */; };
+		F55F27F42343CD2100DFB4A6 /* WordSynonym+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F27EC2343CD2100DFB4A6 /* WordSynonym+CoreDataProperties.swift */; };
 		F59CE92C23411E3D007A5303 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92B23411E3D007A5303 /* AppDelegate.swift */; };
 		F59CE93123411E3D007A5303 /* LanguageCardsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92F23411E3D007A5303 /* LanguageCardsApp.xcdatamodeld */; };
 		F59CE93523411E3F007A5303 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F59CE93423411E3F007A5303 /* Assets.xcassets */; };
@@ -22,6 +30,7 @@
 		F59CE964234123DA007A5303 /* WordList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F59CE963234123DA007A5303 /* WordList.storyboard */; };
 		F59CE96623412629007A5303 /* SavedWordsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE96523412629007A5303 /* SavedWordsService.swift */; };
 		F59CE968234128F2007A5303 /* WordListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE967234128F2007A5303 /* WordListAssembly.swift */; };
+		F59EE17023427CCA009A4BB8 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EE16F23427CCA009A4BB8 /* Storyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +49,14 @@
 		62A365010DBE618924250015 /* Pods_LanguageCardsAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LanguageCardsAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ADDDCBA8F4987FBD947116B /* Pods-LanguageCardsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LanguageCardsApp.release.xcconfig"; path = "Target Support Files/Pods-LanguageCardsApp/Pods-LanguageCardsApp.release.xcconfig"; sourceTree = "<group>"; };
 		CCF3C195DEF36A10158F7428 /* Pods_LanguageCardsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LanguageCardsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F55F27E52343CD2100DFB4A6 /* WordMean+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordMean+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F55F27E62343CD2100DFB4A6 /* WordMean+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordMean+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F55F27E72343CD2100DFB4A6 /* WordTranslation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordTranslation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F55F27E82343CD2100DFB4A6 /* WordTranslation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordTranslation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F55F27E92343CD2100DFB4A6 /* TranslationDictionary+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TranslationDictionary+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F55F27EA2343CD2100DFB4A6 /* TranslationDictionary+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TranslationDictionary+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F55F27EB2343CD2100DFB4A6 /* WordSynonym+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordSynonym+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F55F27EC2343CD2100DFB4A6 /* WordSynonym+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordSynonym+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F59CE92823411E3D007A5303 /* LanguageCardsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LanguageCardsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59CE92B23411E3D007A5303 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F59CE93023411E3D007A5303 /* LanguageCardsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LanguageCardsApp.xcdatamodel; sourceTree = "<group>"; };
@@ -57,6 +74,7 @@
 		F59CE963234123DA007A5303 /* WordList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WordList.storyboard; sourceTree = "<group>"; };
 		F59CE96523412629007A5303 /* SavedWordsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedWordsService.swift; sourceTree = "<group>"; };
 		F59CE967234128F2007A5303 /* WordListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListAssembly.swift; sourceTree = "<group>"; };
+		F59EE16F23427CCA009A4BB8 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		F620BB4FCF5BE5DD6F7C6C93 /* Pods-LanguageCardsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LanguageCardsAppTests.release.xcconfig"; path = "Target Support Files/Pods-LanguageCardsAppTests/Pods-LanguageCardsAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +116,21 @@
 				F620BB4FCF5BE5DD6F7C6C93 /* Pods-LanguageCardsAppTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F55F27B02343C92000DFB4A6 /* DBEntity */ = {
+			isa = PBXGroup;
+			children = (
+				F55F27E52343CD2100DFB4A6 /* WordMean+CoreDataClass.swift */,
+				F55F27E62343CD2100DFB4A6 /* WordMean+CoreDataProperties.swift */,
+				F55F27E72343CD2100DFB4A6 /* WordTranslation+CoreDataClass.swift */,
+				F55F27E82343CD2100DFB4A6 /* WordTranslation+CoreDataProperties.swift */,
+				F55F27E92343CD2100DFB4A6 /* TranslationDictionary+CoreDataClass.swift */,
+				F55F27EA2343CD2100DFB4A6 /* TranslationDictionary+CoreDataProperties.swift */,
+				F55F27EB2343CD2100DFB4A6 /* WordSynonym+CoreDataClass.swift */,
+				F55F27EC2343CD2100DFB4A6 /* WordSynonym+CoreDataProperties.swift */,
+			);
+			path = DBEntity;
 			sourceTree = "<group>";
 		};
 		F59CE91F23411E3D007A5303 = {
@@ -173,6 +206,7 @@
 		F59CE95323412106007A5303 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				F55F27B02343C92000DFB4A6 /* DBEntity */,
 				F59CE95523412134007A5303 /* Constants.swift */,
 			);
 			path = Data;
@@ -217,6 +251,7 @@
 		F59CE962234123BB007A5303 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				F59EE16F23427CCA009A4BB8 /* Storyboard.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -390,14 +425,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F55F27F22343CD2100DFB4A6 /* TranslationDictionary+CoreDataProperties.swift in Sources */,
 				F59CE92C23411E3D007A5303 /* AppDelegate.swift in Sources */,
+				F55F27EE2343CD2100DFB4A6 /* WordMean+CoreDataProperties.swift in Sources */,
 				F59CE968234128F2007A5303 /* WordListAssembly.swift in Sources */,
 				F59CE93123411E3D007A5303 /* LanguageCardsApp.xcdatamodeld in Sources */,
 				F59CE9612341239A007A5303 /* WordListRouter.swift in Sources */,
 				F59CE95623412134007A5303 /* Constants.swift in Sources */,
+				F55F27F32343CD2100DFB4A6 /* WordSynonym+CoreDataClass.swift in Sources */,
 				F59CE96623412629007A5303 /* SavedWordsService.swift in Sources */,
 				F59CE95D23412388007A5303 /* WordListController.swift in Sources */,
+				F55F27F02343CD2100DFB4A6 /* WordTranslation+CoreDataProperties.swift in Sources */,
+				F59EE17023427CCA009A4BB8 /* Storyboard.swift in Sources */,
+				F55F27EF2343CD2100DFB4A6 /* WordTranslation+CoreDataClass.swift in Sources */,
+				F55F27F42343CD2100DFB4A6 /* WordSynonym+CoreDataProperties.swift in Sources */,
+				F55F27ED2343CD2100DFB4A6 /* WordMean+CoreDataClass.swift in Sources */,
 				F59CE95F23412391007A5303 /* WordListViewModel.swift in Sources */,
+				F55F27F12343CD2100DFB4A6 /* TranslationDictionary+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
