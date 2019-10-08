@@ -11,7 +11,7 @@ import Foundation
 class TypedPredicate<T>: NSPredicate {
     let predicate: NSPredicate
     
-    init(predicate: NSPredicate) {
+    fileprivate init(predicate: NSPredicate) {
         self.predicate = predicate
         
         super.init()
