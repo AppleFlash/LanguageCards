@@ -7,11 +7,16 @@
 //
 
 import CoreData
+import RxSwift
+
+final class PersistenceFactory {
+    static let persistence: Persistence = CoreDataPersistence(coordinatorType: .SQLite)
+}
 
 protocol Persistence: class {
     func get<T: ManagedTransformable>(
         _ filterPredicate: TypedPredicate<T.ManagedType>
-    ) -> [T]
+    ) -> Single<[T]>
     
-    func save<T: ManagedTransformable>(_ object: T)
+    func save<T: ManagedTransformable>(_ object: T) -> Single<Void>
 }
