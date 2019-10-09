@@ -19,7 +19,9 @@ typealias ManagedInitializableType = EmptyInitializable & PlainTransformable
  */
 protocol PlainTransformable {
     associatedtype PlainType: ManagedTransformable where PlainType.ManagedType == Self
+    associatedtype IdentifierType
     
+    var identifier: IdentifierType { get }
     var plainObject: PlainType { get }
     
     func update(from plain: PlainType)

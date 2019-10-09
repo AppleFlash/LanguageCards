@@ -9,8 +9,10 @@
 import UIKit
 
 struct WordTranslation {
+    let identifier: String
     let created: Date
-    let rawValue: String
+    let means: [String]
+    let original: String
+    let synonims: [String]
     let translation: String
-    let dictionary: [TranslationDictionary]?
 }

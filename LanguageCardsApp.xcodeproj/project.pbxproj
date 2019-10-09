@@ -12,6 +12,7 @@
 		F550D9D8234D03810054F531 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550D9D7234D03810054F531 /* Persistence.swift */; };
 		F550D9DA234D03BA0054F531 /* CoreDataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550D9D9234D03BA0054F531 /* CoreDataPersistence.swift */; };
 		F550D9DC234D10000054F531 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550D9DB234D10000054F531 /* Operators.swift */; };
+		F59669DB234E59DF008C65E1 /* CoreDataPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59669DA234E59DF008C65E1 /* CoreDataPersistenceTests.swift */; };
 		F59CE92C23411E3D007A5303 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92B23411E3D007A5303 /* AppDelegate.swift */; };
 		F59CE93123411E3D007A5303 /* LanguageCardsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92F23411E3D007A5303 /* LanguageCardsApp.xcdatamodeld */; };
 		F59CE93523411E3F007A5303 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F59CE93423411E3F007A5303 /* Assets.xcassets */; };
@@ -27,12 +28,8 @@
 		F59CE968234128F2007A5303 /* WordListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE967234128F2007A5303 /* WordListAssembly.swift */; };
 		F59EE17023427CCA009A4BB8 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EE16F23427CCA009A4BB8 /* Storyboard.swift */; };
 		F5A7004C2348ECED00010D9A /* Transformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7004B2348ECED00010D9A /* Transformable.swift */; };
-		F5A7005623490FBB00010D9A /* ManagedWordMean+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7004E23490FBB00010D9A /* ManagedWordMean+CoreDataClass.swift */; };
-		F5A7005723490FBB00010D9A /* ManagedWordMean+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7004F23490FBB00010D9A /* ManagedWordMean+CoreDataProperties.swift */; };
-		F5A7005F23490FCE00010D9A /* WordMean.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7005E23490FCE00010D9A /* WordMean.swift */; };
+		F5A7005623490FBB00010D9A /* ManagedWordTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7004E23490FBB00010D9A /* ManagedWordTranslation.swift */; };
 		F5A7006123490FDF00010D9A /* WordTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7006023490FDF00010D9A /* WordTranslation.swift */; };
-		F5A7006323490FF300010D9A /* WordSynonym.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7006223490FF300010D9A /* WordSynonym.swift */; };
-		F5A700652349103A00010D9A /* TranslationDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A700642349103A00010D9A /* TranslationDictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +51,7 @@
 		F550D9D7234D03810054F531 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		F550D9D9234D03BA0054F531 /* CoreDataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPersistence.swift; sourceTree = "<group>"; };
 		F550D9DB234D10000054F531 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		F59669DA234E59DF008C65E1 /* CoreDataPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPersistenceTests.swift; sourceTree = "<group>"; };
 		F59CE92823411E3D007A5303 /* LanguageCardsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LanguageCardsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59CE92B23411E3D007A5303 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F59CE93023411E3D007A5303 /* LanguageCardsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LanguageCardsApp.xcdatamodel; sourceTree = "<group>"; };
@@ -73,12 +71,8 @@
 		F59CE967234128F2007A5303 /* WordListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListAssembly.swift; sourceTree = "<group>"; };
 		F59EE16F23427CCA009A4BB8 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		F5A7004B2348ECED00010D9A /* Transformable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformable.swift; sourceTree = "<group>"; };
-		F5A7004E23490FBB00010D9A /* ManagedWordMean+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedWordMean+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F5A7004F23490FBB00010D9A /* ManagedWordMean+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedWordMean+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F5A7005E23490FCE00010D9A /* WordMean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMean.swift; sourceTree = "<group>"; };
+		F5A7004E23490FBB00010D9A /* ManagedWordTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedWordTranslation.swift; sourceTree = "<group>"; };
 		F5A7006023490FDF00010D9A /* WordTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTranslation.swift; sourceTree = "<group>"; };
-		F5A7006223490FF300010D9A /* WordSynonym.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSynonym.swift; sourceTree = "<group>"; };
-		F5A700642349103A00010D9A /* TranslationDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationDictionary.swift; sourceTree = "<group>"; };
 		F620BB4FCF5BE5DD6F7C6C93 /* Pods-LanguageCardsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LanguageCardsAppTests.release.xcconfig"; path = "Target Support Files/Pods-LanguageCardsAppTests/Pods-LanguageCardsAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,10 +128,17 @@
 		F55F27B02343C92000DFB4A6 /* DBEntity */ = {
 			isa = PBXGroup;
 			children = (
-				F5A7004E23490FBB00010D9A /* ManagedWordMean+CoreDataClass.swift */,
-				F5A7004F23490FBB00010D9A /* ManagedWordMean+CoreDataProperties.swift */,
+				F5A7004E23490FBB00010D9A /* ManagedWordTranslation.swift */,
 			);
 			path = DBEntity;
+			sourceTree = "<group>";
+		};
+		F59669D9234E5979008C65E1 /* PersistenceTests */ = {
+			isa = PBXGroup;
+			children = (
+				F59669DA234E59DF008C65E1 /* CoreDataPersistenceTests.swift */,
+			);
+			path = PersistenceTests;
 			sourceTree = "<group>";
 		};
 		F59CE91F23411E3D007A5303 = {
@@ -177,6 +178,7 @@
 		F59CE94423411E40007A5303 /* LanguageCardsAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				F59669D9234E5979008C65E1 /* PersistenceTests */,
 				F59CE94523411E40007A5303 /* LanguageCardsAppTests.swift */,
 				F59CE94723411E40007A5303 /* Info.plist */,
 			);
@@ -270,9 +272,6 @@
 		F5A7004D23490EBF00010D9A /* PlainEntity */ = {
 			isa = PBXGroup;
 			children = (
-				F5A700642349103A00010D9A /* TranslationDictionary.swift */,
-				F5A7005E23490FCE00010D9A /* WordMean.swift */,
-				F5A7006223490FF300010D9A /* WordSynonym.swift */,
 				F5A7006023490FDF00010D9A /* WordTranslation.swift */,
 			);
 			path = PlainEntity;
@@ -308,6 +307,7 @@
 				F59CE93D23411E40007A5303 /* Sources */,
 				F59CE93E23411E40007A5303 /* Frameworks */,
 				F59CE93F23411E40007A5303 /* Resources */,
+				DDF07F6B8FF439B8B8FE2828 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -440,6 +440,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DDF07F6B8FF439B8B8FE2828 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LanguageCardsAppTests/Pods-LanguageCardsAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LanguageCardsAppTests/Pods-LanguageCardsAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LanguageCardsAppTests/Pods-LanguageCardsAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -450,20 +467,16 @@
 				F59CE92C23411E3D007A5303 /* AppDelegate.swift in Sources */,
 				F59CE968234128F2007A5303 /* WordListAssembly.swift in Sources */,
 				F550D9D8234D03810054F531 /* Persistence.swift in Sources */,
-				F5A7005F23490FCE00010D9A /* WordMean.swift in Sources */,
 				F59CE93123411E3D007A5303 /* LanguageCardsApp.xcdatamodeld in Sources */,
 				F59CE9612341239A007A5303 /* WordListRouter.swift in Sources */,
 				F550D9DC234D10000054F531 /* Operators.swift in Sources */,
-				F5A7005723490FBB00010D9A /* ManagedWordMean+CoreDataProperties.swift in Sources */,
 				F59CE95623412134007A5303 /* Constants.swift in Sources */,
 				F550D9DA234D03BA0054F531 /* CoreDataPersistence.swift in Sources */,
 				F59CE96623412629007A5303 /* SavedWordsService.swift in Sources */,
 				F59CE95D23412388007A5303 /* WordListController.swift in Sources */,
 				F5A7006123490FDF00010D9A /* WordTranslation.swift in Sources */,
 				F59EE17023427CCA009A4BB8 /* Storyboard.swift in Sources */,
-				F5A700652349103A00010D9A /* TranslationDictionary.swift in Sources */,
-				F5A7006323490FF300010D9A /* WordSynonym.swift in Sources */,
-				F5A7005623490FBB00010D9A /* ManagedWordMean+CoreDataClass.swift in Sources */,
+				F5A7005623490FBB00010D9A /* ManagedWordTranslation.swift in Sources */,
 				F59CE95F23412391007A5303 /* WordListViewModel.swift in Sources */,
 				F5A7004C2348ECED00010D9A /* Transformable.swift in Sources */,
 			);
@@ -473,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F59669DB234E59DF008C65E1 /* CoreDataPersistenceTests.swift in Sources */,
 				F59CE94623411E40007A5303 /* LanguageCardsAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

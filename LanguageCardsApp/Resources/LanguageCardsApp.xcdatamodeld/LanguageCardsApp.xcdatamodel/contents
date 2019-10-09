@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="TranslationDictionary" representedClassName="ManagedTranslationDictionary" syncable="YES">
-        <attribute name="text" attributeType="String" defaultValueString=""/>
-        <relationship name="mean" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WordMean" inverseName="dictionary" inverseEntity="WordMean"/>
-        <relationship name="synonyms" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WordSynonym" inverseName="dictionary" inverseEntity="WordSynonym"/>
-        <relationship name="word" transient="YES" maxCount="1" deletionRule="Cascade" destinationEntity="WordTranslation" inverseName="dictionary" inverseEntity="WordTranslation"/>
-    </entity>
-    <entity name="WordMean" representedClassName="ManagedWordMean" syncable="YES">
-        <attribute name="text" attributeType="String" defaultValueString=""/>
-        <relationship name="dictionary" transient="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TranslationDictionary" inverseName="mean" inverseEntity="TranslationDictionary"/>
-    </entity>
-    <entity name="WordSynonym" representedClassName="ManagedWordSynonym" syncable="YES">
-        <attribute name="text" attributeType="String" defaultValueString=""/>
-        <relationship name="dictionary" transient="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TranslationDictionary" inverseName="synonyms" inverseEntity="TranslationDictionary"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="19A583" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="TestEntity" representedClassName="TestEntity" syncable="YES">
+        <attribute name="identifier" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
     </entity>
     <entity name="WordTranslation" representedClassName=".ManagedWordTranslation" syncable="YES">
-        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="rawValue" attributeType="String" defaultValueString=""/>
+        <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="identifier" attributeType="String"/>
+        <attribute name="means" optional="YES" attributeType="Transformable" customClassName="[NSString]"/>
+        <attribute name="original" attributeType="String" defaultValueString=""/>
+        <attribute name="synonims" optional="YES" attributeType="Transformable" customClassName="[NSString]"/>
         <attribute name="translation" attributeType="String" defaultValueString=""/>
-        <relationship name="dictionary" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TranslationDictionary" inverseName="word" inverseEntity="TranslationDictionary"/>
     </entity>
     <elements>
-        <element name="TranslationDictionary" positionX="-54" positionY="27" width="128" height="103"/>
-        <element name="WordMean" positionX="-266.13671875" positionY="-40.72265625" width="128" height="73"/>
-        <element name="WordSynonym" positionX="-278.9296875" positionY="146.8828125" width="128" height="73"/>
-        <element name="WordTranslation" positionX="124.05078125" positionY="15.3671875" width="128" height="103"/>
+        <element name="WordTranslation" positionX="124.05078125" positionY="15.3671875" width="128" height="133"/>
+        <element name="TestEntity" positionX="135" positionY="72" width="128" height="73"/>
     </elements>
 </model>
