@@ -12,16 +12,27 @@ import RxSwift
 final class CoreDataPersistence {
     enum CoreDataError: Error {
         case wrongFetchType
+        case persistenceDoesNotExist
     }
     
     enum CoordinatorType {
         case SQLite, inMemory
+        
+        var type: String {
+            switch self {
+            case .inMemory:
+                return NSInMemoryStoreType
+            case .SQLite:
+                return NSSQLiteStoreType
+            }
+        }
     }
     
     private let coordinatorType: CoordinatorType
     
     private let container: NSPersistentContainer
     private let queue = DispatchQueue(label: "com.queue.card.coredata")
+    private var storeCoordinator: NSPersistentStoreCoordinator!
     
     private lazy var privateWriteContext: NSManagedObjectContext = {
         let pwc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
@@ -32,7 +43,7 @@ final class CoreDataPersistence {
             coordinator = container.persistentStoreCoordinator
         case .inMemory:
             coordinator = NSPersistentStoreCoordinator(managedObjectModel: container.managedObjectModel)
-            try! coordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+            try! coordinator.addPersistentStore(ofType: coordinatorType.type, configurationName: nil, at: nil, options: nil)
         }
         
         pwc.persistentStoreCoordinator = coordinator
@@ -56,12 +67,18 @@ final class CoreDataPersistence {
         return bgc
     }()
     
+    fileprivate static func identityPredicate<T: ManagedTransformable>(identifier: CVarArg) -> TypedPredicate<T> {
+        return .init(predicate: .init(format: "%K == %@", T.ManagedType.primaryKey, identifier))
+    }
+    
     init(coordinatorType: CoordinatorType) {
         self.coordinatorType = coordinatorType
         container = NSPersistentContainer(name: "LanguageCardsApp")
-        container.loadPersistentStores { description, error in
+        container.loadPersistentStores { [unowned self] description, error in
             if let error = error {
                 assertionFailure("Load persistence error \(error)")
+            } else {
+                self.storeCoordinator = self.privateWriteContext.persistentStoreCoordinator
             }
         }
     }
@@ -91,29 +108,139 @@ final class CoreDataPersistence {
         }
     }
     
+    private func getManagedObjects<T: ManagedTransformable>(
+        _: T.Type,
+        _ filterPredicate: TypedPredicate<T.ManagedType>?
+    ) -> Single<[T.ManagedType]> {
+        return backgroundContext.rx.performInQueue()
+            .flatMap { $0.rx.getOrFetch(T.self, with: filterPredicate?.predicate) }
+    }
+    
+    private func delete(entityName: String, predicate: NSPredicate? = nil) throws -> [NSManagedObjectID] {
+        let deleteRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        deleteRequest.predicate = predicate
+        
+        if storeCoordinator.persistentStores.first!.type == CoordinatorType.inMemory.type {
+            try backgroundContext.execute(deleteRequest)
+            
+            return []
+        } else {
+            let batchRequest = NSBatchDeleteRequest(fetchRequest: deleteRequest)
+            batchRequest.resultType = .resultTypeObjectIDs
+            
+            let execResult = try storeCoordinator.execute(
+                batchRequest,
+                with: backgroundContext
+            ) as! NSBatchDeleteResult
+            
+            return execResult.result as! [NSManagedObjectID]
+        }
+    }
+    
+    private func mergeDeletedObjects(_ ids: [NSManagedObjectID]) {
+        guard !ids.isEmpty else {
+            return
+        }
+        
+        NSManagedObjectContext.mergeChanges(
+            fromRemoteContextSave: [NSDeletedObjectsKey: ids],
+            into: [backgroundContext]
+        )
+    }
 }
 
 extension CoreDataPersistence: Persistence {
+    func getAll<T: ManagedTransformable>(
+        _: T.Type
+    ) -> Single<[T]> {
+        return getManagedObjects(T.self, nil)
+            .map { $0.map { $0.plainObject } }
+    }
+    
     func get<T: ManagedTransformable>(
         _ filterPredicate: TypedPredicate<T.ManagedType>
     ) -> Single<[T]> {
-        let context = backgroundContext
-        
-        return Single.just(filterPredicate.predicate)
-            .flatMap(context.rx.getObjects)
-            .flatMap { (objects: [T]) in
-                if objects.isEmpty {
-                    return context.rx.fetch(with: filterPredicate.predicate)
-                } else {
-                    return .just(objects)
-                }
+        return getManagedObjects(T.self, filterPredicate)
+            .map { $0.map { $0.plainObject } }
+    }
+    
+    func getObject<T: ManagedTransformable>(
+        with filterPredicate: TypedPredicate<T.ManagedType>
+    ) -> Single<T?> {
+        return getManagedObjects(T.self, filterPredicate)
+            .map { $0.first }
+            .map { $0?.plainObject }
+    }
+    
+    func save<T: ManagedTransformable>(
+        object: T
+    ) -> Single<Void> {
+        return backgroundContext.rx.performInQueue()
+            .flatMap { $0.rx.update(object: object) }
+            .flatMap { [unowned self] in
+                return .just(self.saveContext())
             }
     }
     
-    func save<T: ManagedTransformable>(_ object: T) -> Single<Void> {
+    func save<T: ManagedTransformable>(
+        objects: [T]
+    ) -> Single<Void> {
         return backgroundContext.rx.performInQueue()
-            .flatMap { $0.rx.insert(object: object) }
+            .flatMap { $0.rx.update(objects: objects) }
             .flatMap { [unowned self] in
+                return .just(self.saveContext())
+            }
+    }
+    
+    func deleteAll<T: ManagedTransformable>(_: T.Type) -> Single<Void> {
+        return backgroundContext.rx.performInQueue()
+            .flatMap { [weak self] context -> Single<[NSManagedObjectID]> in
+                guard let self = self else {
+                    return .error(CoreDataError.persistenceDoesNotExist)
+                }
+                
+                let ids = try self.delete(entityName: String(describing: T.ManagedType.self))
+                return .just(ids)
+            }
+            .flatMap { [unowned self] in
+                self.mergeDeletedObjects($0)
+                return .just(self.saveContext())
+            }
+    }
+    
+    func delete<T: ManagedTransformable>(_: T.Type, predicate: TypedPredicate<T.ManagedType>) -> Single<Void> {
+        return backgroundContext.rx.performInQueue()
+            .flatMap { [weak self] context -> Single<[NSManagedObjectID]> in
+                guard let self = self else {
+                    return .error(CoreDataError.persistenceDoesNotExist)
+                }
+                
+                let ids = try self.delete(
+                    entityName: String(describing: T.ManagedType.self),
+                    predicate: predicate.predicate
+                )
+                return .just(ids)
+            }
+            .flatMap { [unowned self] in
+                self.mergeDeletedObjects($0)
+                return .just(self.saveContext())
+            }
+    }
+    
+    func clear() -> Single<Void> {
+        return backgroundContext.rx.performInQueue()
+            .flatMap { [weak self] context -> Single<[NSManagedObjectID]> in
+                guard let self = self else {
+                    return .error(CoreDataError.persistenceDoesNotExist)
+                }
+
+                let names = self.storeCoordinator.managedObjectModel.entities.compactMap { $0.name }
+                let ids = try names.flatMap { try self.delete(entityName: $0) }
+
+                return .just(ids)
+            }
+            .flatMap { [unowned self] in
+                self.mergeDeletedObjects($0)
                 return .just(self.saveContext())
             }
     }
@@ -130,14 +257,30 @@ private extension Reactive where Base: NSManagedObjectContext {
         }
     }
     
-    func getObjects<T: ManagedTransformable>(for predicate: NSPredicate) -> Single<[T]> {
+    func getOrFetch<T: ManagedTransformable>(_: T.Type, with predicate: NSPredicate?) -> Single<[T.ManagedType]> {
+        return getObjects(T.self, for: predicate)
+            .flatMap { objects in
+                if objects.isEmpty {
+                    return self.fetch(T.self, with: predicate)
+                } else {
+                    return Single.just(objects)
+                }
+            }
+    }
+    
+    func getObjects<T: ManagedTransformable>(_: T.Type, for predicate: NSPredicate?) -> Single<[T.ManagedType]> {
         return Single.create { [base] single in
+            guard let predicate = predicate else {
+                single(.success([]))
+                return Disposables.create()
+            }
+            
             let existingObjects = base.registeredObjects
                 .filter { !$0.isFault }
                 .filter(predicate.evaluate)
             
             if let objects = Array(existingObjects) as? [T.ManagedType] {
-                single(.success(objects.map { $0.plainObject }))
+                single(.success(objects))
             } else {
                 single(.error(CoreDataPersistence.CoreDataError.wrongFetchType))
             }
@@ -146,9 +289,9 @@ private extension Reactive where Base: NSManagedObjectContext {
         }
     }
     
-    func fetch<T: ManagedTransformable>(with predicate: NSPredicate) -> Single<[T]> {
+    func fetch<T: ManagedTransformable>(_: T.Type, with predicate: NSPredicate?) -> Single<[T.ManagedType]> {
         return Single.create { [base] single in
-            let fetchRequest = NSFetchRequest<NSManagedObject>(
+            let fetchRequest = NSFetchRequest<T.ManagedType>(
                 entityName: String(describing: T.ManagedType.self)
             )
 
@@ -156,8 +299,8 @@ private extension Reactive where Base: NSManagedObjectContext {
             fetchRequest.returnsObjectsAsFaults = false
 
             base.perform {
-                if let results = try? base.fetch(fetchRequest) as? [T.ManagedType] {
-                    single(.success(results.map { $0.plainObject }))
+                if let results = try? base.fetch(fetchRequest) {
+                    single(.success(results))
                 } else {
                     single(.error(CoreDataPersistence.CoreDataError.wrongFetchType))
                 }
@@ -167,22 +310,25 @@ private extension Reactive where Base: NSManagedObjectContext {
         }
     }
     
-    func insert<T: ManagedTransformable>(object: T) -> Single<Void> {
-        return Single.create { [base] single in
-            guard
-                let entity = NSEntityDescription.insertNewObject(
-                    forEntityName: String(describing: T.ManagedType.self),
-                    into: base
-                ) as? T.ManagedType
-            else {
-                single(.error(CoreDataPersistence.CoreDataError.wrongFetchType))
-                return Disposables.create()
+    func update<T: ManagedTransformable>(
+        object: T
+    ) -> Single<Void> {
+        return update(objects: [object])
+    }
+    
+    func update<T: ManagedTransformable>(
+        objects: [T]
+    ) -> Single<Void> {
+        let predicate = NSPredicate(format: "%K IN %@", T.ManagedType.primaryKey, objects.map { $0.identifier })
+        
+        return getOrFetch(T.self, with: predicate)
+            .flatMap { [base] existingObjects in
+                for plain in objects {
+                    let entity = existingObjects.first { $0.identifier == plain.identifier } ?? T.ManagedType(context: base)
+                    entity.update(from: plain)
+                }
+                
+                return .just(())
             }
-            
-            entity.update(from: object)
-            single(.success(()))
-            
-            return Disposables.create()
-        }
     }
 }

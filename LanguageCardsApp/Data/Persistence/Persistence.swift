@@ -14,9 +14,29 @@ final class PersistenceFactory {
 }
 
 protocol Persistence: class {
+    func getAll<T: ManagedTransformable>(
+        _: T.Type
+    ) -> Single<[T]>
+    
     func get<T: ManagedTransformable>(
         _ filterPredicate: TypedPredicate<T.ManagedType>
     ) -> Single<[T]>
     
-    func save<T: ManagedTransformable>(_ object: T) -> Single<Void>
+    func getObject<T: ManagedTransformable>(
+        with filterPredicate: TypedPredicate<T.ManagedType>
+    ) -> Single<T?>
+    
+    func save<T: ManagedTransformable>(
+        object: T
+    ) -> Single<Void>
+    
+    func save<T: ManagedTransformable>(
+        objects: [T]
+    ) -> Single<Void>
+    
+    func deleteAll<T: ManagedTransformable>(_: T.Type) -> Single<Void>
+    
+    func delete<T: ManagedTransformable>(_: T.Type, predicate: TypedPredicate<T.ManagedType>) -> Single<Void>
+    
+    func clear() -> Single<Void>
 }

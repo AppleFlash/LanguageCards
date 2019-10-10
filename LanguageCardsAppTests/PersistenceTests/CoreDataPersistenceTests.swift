@@ -16,22 +16,26 @@ import RxTest
 @testable import LanguageCardsApp
 
 class CoreDataPersistenceTests: XCTestCase {
-    var persistence: Persistence!
-    var disposeBag: DisposeBag = .init()
+    private static var inMemoryPersistence: Persistence!
+    private static var sqlPersistence: Persistence!
+    
+    private var disposeBag: DisposeBag = .init()
+    private let sortBlock: (PlainTestEntity, PlainTestEntity) -> Bool = { $0.identifier < $1.identifier }
     
     override func setUp() {
         super.setUp()
         
+        clearPersistences()
         disposeBag = .init()
-        persistence = CoreDataPersistence(coordinatorType: .inMemory)
+        initPersistences()
     }
     
     func testInsertNewObject() {
-        let plain = PlainTestEntity(identifier: UUID().uuidString, name: "plain object")
+        let plain = makePlain("1")
         
         let insertExpectation = expectation(description: "insert expectation")
         
-        persistence.save(plain)
+        CoreDataPersistenceTests.inMemoryPersistence.save(object: plain)
             .subscribe(onSuccess: {
                 insertExpectation.fulfill()
             })
@@ -41,16 +45,108 @@ class CoreDataPersistenceTests: XCTestCase {
     }
     
     func testGetObjects() {
-        let plain1 = PlainTestEntity(identifier: UUID().uuidString, name: "plain object")
-        let plain2 = PlainTestEntity(identifier: UUID().uuidString, name: "plain object")
+        let plain1 = makePlain("1")
+        let plain2 = makePlain("2")
+        let plainObjects = [plain1, plain2].sorted(by: sortBlock)
         
-        XCTAssertNotNil(try? persistence.save(plain1).toBlocking().first())
-        XCTAssertNotNil(try? persistence.save(plain2).toBlocking().first())
+        saveObjects(plainObjects, to: CoreDataPersistenceTests.inMemoryPersistence)
         
-        let predicate = \PlainTestEntity.ManagedType.identifier == plain1.identifier
-        let savedObject: BlockingObservable<[PlainTestEntity]> = persistence.get(predicate).toBlocking()
-        let plainObjects = try? savedObject.first()?.first
+        let savedObjects: [PlainTestEntity]? = try? CoreDataPersistenceTests.inMemoryPersistence
+            .getAll(PlainTestEntity.self)
+            .toBlocking()
+            .first()
+        let sortedSavedObjects = savedObjects!.sorted(by: sortBlock)
         
-        XCTAssertEqual(plain1.identifier, plainObjects?.identifier, "fsdf")
+        XCTAssertTrue(plainObjects == sortedSavedObjects)
+    }
+    
+    func testGetSingleObject() {
+        let plain = makePlain("name")
+        saveObject(plain, to: CoreDataPersistenceTests.inMemoryPersistence)
+        
+        let predicate = \PlainTestEntity.ManagedType.identifier == plain.identifier
+        let savedObject: BlockingObservable<PlainTestEntity?> = CoreDataPersistenceTests.inMemoryPersistence
+            .getObject(with: predicate)
+            .toBlocking()
+        let plainObject = try! savedObject.first()!!
+        
+        XCTAssertEqual(plain, plainObject, "\(plain) does not equal to \(plainObject)")
+    }
+    
+    func testThatPersistenceExecutesInNonMainThread() {
+        let threadExpectation = expectation(description: "thread expectation")
+        
+        DispatchQueue.main.async {
+            CoreDataPersistenceTests.inMemoryPersistence.get(\PlainTestEntity.ManagedType.identifier == "")
+                .subscribe(onSuccess: { (obj: [PlainTestEntity]) in
+                    threadExpectation.fulfill()
+                    XCTAssertFalse(Thread.isMainThread)
+                })
+                .disposed(by: self.disposeBag)
+        }
+        
+        wait(for: [threadExpectation], timeout: 1)
+    }
+    
+    func testUpdateExistingEntity() {
+        var plain = makePlain("1")
+        saveObject(plain, to: CoreDataPersistenceTests.inMemoryPersistence)
+
+        let newName = "changed"
+        plain.name = newName
+
+        XCTAssertNotNil(try? CoreDataPersistenceTests.inMemoryPersistence.save(object: plain).toBlocking().first())
+        
+        let predicate = \PlainTestEntity.ManagedType.identifier == plain.identifier
+        let savedObject: [PlainTestEntity] = try! CoreDataPersistenceTests.inMemoryPersistence
+            .get(predicate)
+            .toBlocking()
+            .first()!
+        XCTAssertEqual(savedObject.count, 1, "Actual count \(savedObject.count)")
+        
+        XCTAssertEqual(plain, savedObject.first, "\(plain) does not equal to \(savedObject)")
+    }
+    
+    func testDeleteSingleEntity() {
+        var objects = [makePlain("1"), makePlain("2")].sorted(by: sortBlock)
+        let deletedObject = objects.remove(at: 0)
+        clearPersistences()
+        saveObjects(objects, to: CoreDataPersistenceTests.sqlPersistence)
+        
+        let predicate = \PlainTestEntity.ManagedType.identifier == deletedObject.identifier
+        let savedObjects: [PlainTestEntity]? = try? CoreDataPersistenceTests.sqlPersistence.delete(PlainTestEntity.self, predicate: predicate)
+            .flatMap {
+                CoreDataPersistenceTests.sqlPersistence.getAll(PlainTestEntity.self)
+            }
+            .toBlocking()
+            .first()?
+            .sorted(by: sortBlock)
+        
+        XCTAssertTrue(savedObjects!.count == objects.count, "actual count \(savedObjects!.count)")
+        XCTAssertEqual(objects, savedObjects)
+    }
+}
+
+private extension CoreDataPersistenceTests {
+    func initPersistences() {
+        CoreDataPersistenceTests.inMemoryPersistence = CoreDataPersistence(coordinatorType: .inMemory)
+        CoreDataPersistenceTests.sqlPersistence = CoreDataPersistence(coordinatorType: .SQLite)
+    }
+    
+    func clearPersistences() {
+        _ = try? CoreDataPersistenceTests.inMemoryPersistence?.clear().toBlocking().first()
+        _ = try? CoreDataPersistenceTests.sqlPersistence?.clear().toBlocking().first()
+    }
+    
+    func makePlain(_ name: String) -> PlainTestEntity {
+        return .init(identifier: UUID().uuidString, name: name)
+    }
+    
+    func saveObject(_ object: PlainTestEntity, to persistence: Persistence) {
+        XCTAssertNotNil(try? persistence.save(object: object).toBlocking().first())
+    }
+    
+    func saveObjects(_ objects: [PlainTestEntity], to persistence: Persistence) {
+        XCTAssertNotNil(try? persistence.save(objects: objects).toBlocking().first())
     }
 }
