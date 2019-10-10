@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(ManagedWordTranslation)
-public class ManagedWordTranslation: NSManagedObject, ManagedInitializableType {
+public class ManagedWordTranslation: NSManagedObject, PlainTransformable {
     typealias PlainType = WordTranslation
     
     @NSManaged public var identifier: String
@@ -53,7 +53,7 @@ extension WordTranslation: ManagedTransformable {
 //
 
 @objc(TestEntity)
-public class TestEntity: NSManagedObject, ManagedInitializableType {
+public class TestEntity: NSManagedObject, PlainTransformable {
     typealias PlainType = PlainTestEntity
     
     @NSManaged public var identifier: String
@@ -76,9 +76,9 @@ public class TestEntity: NSManagedObject, ManagedInitializableType {
     }
 }
 
-struct PlainTestEntity: ManagedTransformable {
+struct PlainTestEntity: ManagedTransformable, Equatable {
     typealias ManagedType = TestEntity
     
     let identifier: String
-    let name: String
+    var name: String
 }

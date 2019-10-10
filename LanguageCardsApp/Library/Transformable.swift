@@ -6,11 +6,7 @@
 //  Copyright © 2019 Vladislav Sedinkin. All rights reserved.
 //
 
-protocol EmptyInitializable {
-    init()
-}
-
-typealias ManagedInitializableType = EmptyInitializable & PlainTransformable
+import CoreData
 
 /**
     Это реализует managed объект
@@ -19,12 +15,16 @@ typealias ManagedInitializableType = EmptyInitializable & PlainTransformable
  */
 protocol PlainTransformable {
     associatedtype PlainType: ManagedTransformable where PlainType.ManagedType == Self
-    associatedtype IdentifierType
     
-    var identifier: IdentifierType { get }
+    var identifier: String { get }
     var plainObject: PlainType { get }
+    static var primaryKey: String { get }
     
     func update(from plain: PlainType)
+}
+
+extension PlainTransformable {
+    static var primaryKey: String { return "identifier" }
 }
 
 /**
@@ -32,71 +32,7 @@ protocol PlainTransformable {
     Должна быть возможность получить идентификатор для запросов
  */
 protocol ManagedTransformable {
-    associatedtype ManagedType: ManagedInitializableType where ManagedType.PlainType == Self
-    associatedtype IdentifierType
+    associatedtype ManagedType: PlainTransformable, NSManagedObject where ManagedType.PlainType == Self
     
-    var identifier: IdentifierType { get }
+    var identifier: String { get }
 }
-
-//class RealmObject: PlainTransformable, EmptyInitializable {
-//    var id: String = ""
-//    var name: String = ""
-//
-//    var plainObject: PlainObject {
-//        return .init(identifier: id, name: name)
-//    }
-//
-//    required init() {
-//        id = ""
-//        name = ""
-//    }
-//
-//    func update(from plain: PlainObject) {
-//        self.id = plain.identifier
-//        self.name = plain.name
-//    }
-//}
-
-//class CoreDataObject: PlainTransformable & EmptyInitializable {
-//    var id: String = ""
-//    var name: String = ""
-//
-//    var plainObject: PlainObject {
-//        return .init(identifier: id, name: name)
-//    }
-//
-//    required init() {
-//        fatalError()
-//    }
-//
-//    func update(from plain: PlainObject) {
-//        self.id = plain.identifier
-//        self.name = plain.name
-//    }
-//}
-//
-//struct PlainObject: ManagedTransformable {
-//    typealias ManagedType = CoreDataObject
-//
-//    var identifier: String = ""
-//    var name: String = ""
-//}
-//
-/////
-//
-//protocol DataBaseGateway {
-//    func save<T: ManagedTransformable>(_ object: T)
-//}
-//
-//class RealmPersistence: DataBaseGateway {
-//    func save<T: ManagedTransformable>(_ object: T) {
-//        let managedObject = T.ManagedType()
-//        managedObject.update(from: object)
-//    }
-//}
-//
-//class CoreDataPersistence: DataBaseGateway {
-//    func save<T: ManagedTransformable>(_ object: T) {
-//
-//    }
-//}
