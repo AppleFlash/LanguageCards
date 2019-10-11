@@ -19,11 +19,11 @@ protocol Persistence: class {
     ) -> Single<[T]>
     
     func get<T: ManagedTransformable>(
-        _ filterPredicate: TypedPredicate<T.ManagedType>
+        _ predicate: Predicate<T.ManagedType>
     ) -> Single<[T]>
     
     func getObject<T: ManagedTransformable>(
-        with filterPredicate: TypedPredicate<T.ManagedType>
+        with predicate: Predicate<T.ManagedType>
     ) -> Single<T?>
     
     func save<T: ManagedTransformable>(
@@ -36,7 +36,10 @@ protocol Persistence: class {
     
     func deleteAll<T: ManagedTransformable>(_: T.Type) -> Single<Void>
     
-    func delete<T: ManagedTransformable>(_: T.Type, predicate: TypedPredicate<T.ManagedType>) -> Single<Void>
+    func delete<T: ManagedTransformable>(
+        _: T.Type,
+        predicate: Predicate<T.ManagedType>
+    ) -> Single<Void>
     
     func clear() -> Single<Void>
 }

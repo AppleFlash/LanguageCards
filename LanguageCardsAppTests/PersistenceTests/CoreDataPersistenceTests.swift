@@ -64,7 +64,8 @@ class CoreDataPersistenceTests: XCTestCase {
         let plain = makePlain("name")
         saveObject(plain, to: CoreDataPersistenceTests.inMemoryPersistence)
         
-        let predicate = \PlainTestEntity.ManagedType.identifier == plain.identifier
+        
+        let predicate = Predicate().filter(\PlainTestEntity.ManagedType.identifier == plain.identifier)
         let savedObject: BlockingObservable<PlainTestEntity?> = CoreDataPersistenceTests.inMemoryPersistence
             .getObject(with: predicate)
             .toBlocking()
@@ -77,7 +78,7 @@ class CoreDataPersistenceTests: XCTestCase {
         let threadExpectation = expectation(description: "thread expectation")
         
         DispatchQueue.main.async {
-            CoreDataPersistenceTests.inMemoryPersistence.get(\PlainTestEntity.ManagedType.identifier == "")
+            CoreDataPersistenceTests.inMemoryPersistence.getAll(PlainTestEntity.self)
                 .subscribe(onSuccess: { (obj: [PlainTestEntity]) in
                     threadExpectation.fulfill()
                     XCTAssertFalse(Thread.isMainThread)
@@ -97,7 +98,7 @@ class CoreDataPersistenceTests: XCTestCase {
 
         XCTAssertNotNil(try? CoreDataPersistenceTests.inMemoryPersistence.save(object: plain).toBlocking().first())
         
-        let predicate = \PlainTestEntity.ManagedType.identifier == plain.identifier
+        let predicate = Predicate().filter(\PlainTestEntity.ManagedType.identifier == plain.identifier)
         let savedObject: [PlainTestEntity] = try! CoreDataPersistenceTests.inMemoryPersistence
             .get(predicate)
             .toBlocking()
@@ -113,8 +114,9 @@ class CoreDataPersistenceTests: XCTestCase {
         clearPersistences()
         saveObjects(objects, to: CoreDataPersistenceTests.sqlPersistence)
         
-        let predicate = \PlainTestEntity.ManagedType.identifier == deletedObject.identifier
-        let savedObjects: [PlainTestEntity]? = try? CoreDataPersistenceTests.sqlPersistence.delete(PlainTestEntity.self, predicate: predicate)
+        let predicate = Predicate().filter(\PlainTestEntity.ManagedType.identifier == deletedObject.identifier)
+        let savedObjects: [PlainTestEntity]? = try? CoreDataPersistenceTests.sqlPersistence
+            .delete(PlainTestEntity.self, predicate: predicate)
             .flatMap {
                 CoreDataPersistenceTests.sqlPersistence.getAll(PlainTestEntity.self)
             }

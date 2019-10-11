@@ -110,10 +110,10 @@ final class CoreDataPersistence {
     
     private func getManagedObjects<T: ManagedTransformable>(
         _: T.Type,
-        _ filterPredicate: TypedPredicate<T.ManagedType>?
+        _ predicate: Predicate<T.ManagedType>?
     ) -> Single<[T.ManagedType]> {
         return backgroundContext.rx.performInQueue()
-            .flatMap { $0.rx.getOrFetch(T.self, with: filterPredicate?.predicate) }
+            .flatMap { $0.rx.getOrFetch(T.self, with: predicate) }
     }
     
     private func delete(entityName: String, predicate: NSPredicate? = nil) throws -> [NSManagedObjectID] {
@@ -158,16 +158,16 @@ extension CoreDataPersistence: Persistence {
     }
     
     func get<T: ManagedTransformable>(
-        _ filterPredicate: TypedPredicate<T.ManagedType>
+        _ predicate: Predicate<T.ManagedType>
     ) -> Single<[T]> {
-        return getManagedObjects(T.self, filterPredicate)
+        return getManagedObjects(T.self, predicate)
             .map { $0.map { $0.plainObject } }
     }
     
     func getObject<T: ManagedTransformable>(
-        with filterPredicate: TypedPredicate<T.ManagedType>
+        with predicate: Predicate<T.ManagedType>
     ) -> Single<T?> {
-        return getManagedObjects(T.self, filterPredicate)
+        return getManagedObjects(T.self, predicate)
             .map { $0.first }
             .map { $0?.plainObject }
     }
@@ -208,7 +208,10 @@ extension CoreDataPersistence: Persistence {
             }
     }
     
-    func delete<T: ManagedTransformable>(_: T.Type, predicate: TypedPredicate<T.ManagedType>) -> Single<Void> {
+    func delete<T: ManagedTransformable>(
+        _: T.Type,
+        predicate: Predicate<T.ManagedType>
+    ) -> Single<Void> {
         return backgroundContext.rx.performInQueue()
             .flatMap { [weak self] context -> Single<[NSManagedObjectID]> in
                 guard let self = self else {
@@ -217,7 +220,7 @@ extension CoreDataPersistence: Persistence {
                 
                 let ids = try self.delete(
                     entityName: String(describing: T.ManagedType.self),
-                    predicate: predicate.predicate
+                    predicate: predicate.toSystemPredicate
                 )
                 return .just(ids)
             }
@@ -257,8 +260,8 @@ private extension Reactive where Base: NSManagedObjectContext {
         }
     }
     
-    func getOrFetch<T: ManagedTransformable>(_: T.Type, with predicate: NSPredicate?) -> Single<[T.ManagedType]> {
-        return getObjects(T.self, for: predicate)
+    func getOrFetch<T: ManagedTransformable>(_: T.Type, with predicate: Predicate<T.ManagedType>?) -> Single<[T.ManagedType]> {
+        return getObjects(T.self, for: predicate?.toSystemPredicate)
             .flatMap { objects in
                 if objects.isEmpty {
                     return self.fetch(T.self, with: predicate)
@@ -289,13 +292,13 @@ private extension Reactive where Base: NSManagedObjectContext {
         }
     }
     
-    func fetch<T: ManagedTransformable>(_: T.Type, with predicate: NSPredicate?) -> Single<[T.ManagedType]> {
+    func fetch<T: ManagedTransformable>(_: T.Type, with predicate: Predicate<T.ManagedType>?) -> Single<[T.ManagedType]> {
         return Single.create { [base] single in
             let fetchRequest = NSFetchRequest<T.ManagedType>(
                 entityName: String(describing: T.ManagedType.self)
             )
-
-            fetchRequest.predicate = predicate
+            predicate.map { CoreDataRequest.apply($0, to: fetchRequest) }
+            
             fetchRequest.returnsObjectsAsFaults = false
 
             base.perform {
@@ -321,7 +324,7 @@ private extension Reactive where Base: NSManagedObjectContext {
     ) -> Single<Void> {
         let predicate = NSPredicate(format: "%K IN %@", T.ManagedType.primaryKey, objects.map { $0.identifier })
         
-        return getOrFetch(T.self, with: predicate)
+        return getOrFetch(T.self, with: .from(predicate: predicate))
             .flatMap { [base] existingObjects in
                 for plain in objects {
                     let entity = existingObjects.first { $0.identifier == plain.identifier } ?? T.ManagedType(context: base)
