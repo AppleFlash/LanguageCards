@@ -96,7 +96,7 @@ class CoreDataPersistenceTests: XCTestCase {
         let newName = "changed"
         plain.name = newName
 
-        XCTAssertNotNil(try? CoreDataPersistenceTests.inMemoryPersistence.save(object: plain).toBlocking().first())
+        XCTAssertNoThrow(try CoreDataPersistenceTests.inMemoryPersistence.save(object: plain).toBlocking().first())
         
         let predicate = Predicate().filter(\PlainTestEntity.ManagedType.identifier == plain.identifier)
         let savedObject: [PlainTestEntity] = try! CoreDataPersistenceTests.inMemoryPersistence
@@ -136,8 +136,8 @@ private extension CoreDataPersistenceTests {
     }
     
     func clearPersistences() {
-        _ = try? CoreDataPersistenceTests.inMemoryPersistence?.clear().toBlocking().first()
-        _ = try? CoreDataPersistenceTests.sqlPersistence?.clear().toBlocking().first()
+        XCTAssertNoThrow(try CoreDataPersistenceTests.inMemoryPersistence?.clear().toBlocking().first())
+        XCTAssertNoThrow(try CoreDataPersistenceTests.sqlPersistence?.clear().toBlocking().first())
     }
     
     func makePlain(_ name: String) -> PlainTestEntity {
@@ -145,10 +145,10 @@ private extension CoreDataPersistenceTests {
     }
     
     func saveObject(_ object: PlainTestEntity, to persistence: Persistence) {
-        XCTAssertNotNil(try? persistence.save(object: object).toBlocking().first())
+        XCTAssertNoThrow(try persistence.save(object: object).toBlocking().first())
     }
     
     func saveObjects(_ objects: [PlainTestEntity], to persistence: Persistence) {
-        XCTAssertNotNil(try? persistence.save(objects: objects).toBlocking().first())
+        XCTAssertNoThrow(try persistence.save(objects: objects).toBlocking().first())
     }
 }

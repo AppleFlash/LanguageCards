@@ -28,13 +28,11 @@ class PredicateTests: XCTestCase {
         let operations = predicate.build()
         
         XCTAssertTrue(operations.count == 2, "actual count \(operations.count)")
-        let range = operations.first { $0.batch != nil }.flatMap { $0.batch }
-        XCTAssertNotNil(range)
-        XCTAssertTrue(range == firstRange, "actual range \(range!)")
+        let range = try! XCTUnwrap(operations.first { $0.batch != nil }.flatMap { $0.batch })
+        XCTAssertTrue(range == firstRange, "actual range \(range)")
         
-        let standardPredicate = operations.first { $0.filter != nil }.flatMap { $0.filter }?.predicate
-        XCTAssertNotNil(standardPredicate)
-        XCTAssertTrue(standardPredicate!.predicateFormat == firstFormat, "actual format \(standardPredicate!.predicateFormat)")
+        let standardPredicate = try! XCTUnwrap(operations.first { $0.filter != nil }.flatMap { $0.filter }?.predicate)
+        XCTAssertTrue(standardPredicate.predicateFormat == firstFormat, "actual format \(standardPredicate.predicateFormat)")
     }
     
     func testConvertWrongToStandartPredicate() {
@@ -54,8 +52,7 @@ class PredicateTests: XCTestCase {
         let actualFormat = typedPredicate.predicate.predicateFormat
         let predicate = Predicate().filter(typedPredicate)
         
-        let receivedFormat = predicate.toSystemPredicate?.predicateFormat
-        XCTAssertNotNil(receivedFormat)
-        XCTAssertTrue(actualFormat == receivedFormat, "actual format \(receivedFormat!)")
+        let receivedFormat = try! XCTUnwrap(predicate.toSystemPredicate?.predicateFormat)
+        XCTAssertTrue(actualFormat == receivedFormat, "actual format \(receivedFormat)")
     }
 }
