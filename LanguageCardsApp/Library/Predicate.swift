@@ -56,9 +56,7 @@ final class Predicate<T: PlainTransformable> {
     private var operations: Set<Operation> = []
     
     var toSystemPredicate: NSPredicate? {
-        let predicate = operations.first { $0.filter != nil }.flatMap { $0.filter }?.predicate
-    
-        return predicate
+        return operations.first { $0.filter != nil }.flatMap { $0.filter }?.predicate
     }
     
     func batch(_ range: Range<Int>) -> Predicate {

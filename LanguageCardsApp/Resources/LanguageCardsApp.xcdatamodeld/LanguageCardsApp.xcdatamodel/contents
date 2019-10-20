@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="19A583" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19A602" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="RawDictionary" representedClassName=".ManagedRawDictionary" syncable="YES">
+        <attribute name="original" attributeType="String" defaultValueString=""/>
+        <relationship name="translations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RawDictionaryTranslation" inverseName="rawDictionary" inverseEntity="RawDictionaryTranslation"/>
+    </entity>
+    <entity name="RawDictionaryTranslation" representedClassName=".ManagedRawDictionaryTranslation" syncable="YES">
+        <attribute name="means" optional="YES" attributeType="Transformable" valueTransformerName="[NSString]"/>
+        <attribute name="synonims" optional="YES" attributeType="Transformable" valueTransformerName="[NSString]"/>
+        <attribute name="translation" attributeType="String" defaultValueString=""/>
+        <relationship name="rawDictionary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RawDictionary" inverseName="translations" inverseEntity="RawDictionary"/>
+    </entity>
+    <entity name="RawTranslation" representedClassName=".ManagedRawTranslation" syncable="YES">
+        <attribute name="direction" attributeType="String" defaultValueString="en-ru"/>
+        <attribute name="original" attributeType="String" defaultValueString=""/>
+        <attribute name="translations" attributeType="Transformable" valueTransformerName="[NSString]"/>
+    </entity>
     <entity name="TestEntity" representedClassName="TestEntity" syncable="YES">
         <attribute name="identifier" attributeType="String" defaultValueString=""/>
         <attribute name="name" attributeType="String"/>
     </entity>
-    <entity name="WordTranslation" representedClassName=".ManagedWordTranslation" syncable="YES">
-        <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="identifier" attributeType="String"/>
-        <attribute name="means" optional="YES" attributeType="Transformable" customClassName="[NSString]"/>
-        <attribute name="original" attributeType="String" defaultValueString=""/>
-        <attribute name="synonims" optional="YES" attributeType="Transformable" customClassName="[NSString]"/>
-        <attribute name="translation" attributeType="String" defaultValueString=""/>
-    </entity>
     <elements>
         <element name="TestEntity" positionX="135" positionY="72" width="128" height="73"/>
-        <element name="WordTranslation" positionX="124.05078125" positionY="15.3671875" width="128" height="133"/>
+        <element name="RawTranslation" positionX="126" positionY="63" width="128" height="88"/>
+        <element name="RawDictionary" positionX="135" positionY="72" width="128" height="73"/>
+        <element name="RawDictionaryTranslation" positionX="144" positionY="81" width="128" height="103"/>
     </elements>
 </model>

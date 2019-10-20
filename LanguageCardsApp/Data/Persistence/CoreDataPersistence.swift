@@ -335,3 +335,37 @@ private extension Reactive where Base: NSManagedObjectContext {
             }
     }
 }
+
+extension NSManagedObjectContext {
+    func getOrFetch<T: PlainTransformable>(with predicate: Predicate<T>) -> [T] {
+        guard let standardPredicate = predicate.toSystemPredicate else {
+            fatalError("Predicate does not contain filter operation")
+        }
+        
+        let existingObjects: [T] = getObjects(with: standardPredicate)
+        if !existingObjects.isEmpty {
+            return existingObjects
+        } else {
+            return fetchObjects(with: predicate)
+        }
+    }
+    
+    func getObjects<T: PlainTransformable>(with predicate: NSPredicate) -> [T] {
+        let existingObjects = registeredObjects
+            .filter { !$0.isFault }
+            .filter(predicate.evaluate)
+        
+        return Array(existingObjects) as? [T] ?? []
+    }
+    
+    func fetchObjects<T: PlainTransformable>(with predicate: Predicate<T>) -> [T] {
+        let fetchRequest = NSFetchRequest<T>(
+            entityName: String(describing: T.self)
+        )
+        CoreDataRequest.apply(predicate, to: fetchRequest)
+        
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        return (try? fetch(fetchRequest)) ?? []
+    }
+}
