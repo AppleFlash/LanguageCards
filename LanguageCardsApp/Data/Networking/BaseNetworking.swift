@@ -30,7 +30,7 @@ enum NetworkErrorResponse<Response: ServerErrorType>: Error {
     case noInternet
     case server(Response)
     case unknown
-    case parsing
+    case parsing(Error)
 }
 
 class BaseNetworking {
@@ -43,20 +43,21 @@ class BaseNetworking {
         
         return session.rx.data(request: request)
             .map { data in
-                if let parsedResult = try? JSONDecoder().decode(Success.self, from: data) {
-                    return .success(parsedResult)
-                } else {
-                    return .failure(.parsing)
+                do {
+                    return .success(try JSONDecoder().decode(Success.self, from: data))
+                } catch {
+                    return .failure(.parsing(error))
                 }
             }
             .asSingle()
             .catchError { error -> Single<NetworkResult<Success, Failure>> in
                 switch error {
                 case let RxCocoaURLError.httpRequestFailed(_, data) where data != nil:
-                    if let parsedError = try? JSONDecoder().decode(Failure.self, from: data!) {
+                    do {
+                        let parsedError = try JSONDecoder().decode(Failure.self, from: data!)
                         return .just(.failure(.server(parsedError)))
-                    } else {
-                        return .just(.failure(.parsing))
+                    } catch {
+                        return .just(.failure(.parsing(error)))
                     }
                 default:
                     return .just(.failure(.unknown))
