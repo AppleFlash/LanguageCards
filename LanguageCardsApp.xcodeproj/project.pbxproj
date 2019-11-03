@@ -8,14 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		5ECBBAF8C5B65D1A833302C4 /* Pods_LanguageCardsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCF3C195DEF36A10158F7428 /* Pods_LanguageCardsApp.framework */; };
+		B53DB0D723708BD200A92D27 /* TestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DB0D623708BD200A92D27 /* TestEntity.swift */; };
+		B53DB0D923708C0400A92D27 /* ManagedWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DB0D823708C0400A92D27 /* ManagedWord.swift */; };
+		B53DB0DB23708C1100A92D27 /* ManagedWordDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DB0DA23708C1100A92D27 /* ManagedWordDictionary.swift */; };
+		B53DB0DD23708C2000A92D27 /* ManagedWordTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DB0DC23708C2000A92D27 /* ManagedWordTranslation.swift */; };
 		D7A6D032981E499E6FC37FBD /* Pods_LanguageCardsAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A365010DBE618924250015 /* Pods_LanguageCardsAppTests.framework */; };
 		F54816DB23533B6A008D1A0D /* BaseNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54816DA23533B6A008D1A0D /* BaseNetworking.swift */; };
 		F550D9D8234D03810054F531 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550D9D7234D03810054F531 /* Persistence.swift */; };
 		F550D9DA234D03BA0054F531 /* CoreDataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550D9D9234D03BA0054F531 /* CoreDataPersistence.swift */; };
 		F550D9DC234D10000054F531 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550D9DB234D10000054F531 /* Operators.swift */; };
-		F56541F2235C573A0090020C /* ManagedRawDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56541EC235C573A0090020C /* ManagedRawDictionary.swift */; };
-		F56541F4235C573A0090020C /* ManagedRawDictionaryTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56541EE235C573A0090020C /* ManagedRawDictionaryTranslation.swift */; };
-		F56541F6235C573A0090020C /* ManagedRawTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56541F0235C573A0090020C /* ManagedRawTranslation.swift */; };
 		F56541FA235C65640090020C /* GetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56541F9235C65640090020C /* GetTests.swift */; };
 		F59669DB234E59DF008C65E1 /* CoreDataPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59669DA234E59DF008C65E1 /* CoreDataPersistenceTests.swift */; };
 		F59CE92C23411E3D007A5303 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92B23411E3D007A5303 /* AppDelegate.swift */; };
@@ -53,14 +54,15 @@
 		5F3481C6888E92D1751CAA64 /* Pods-LanguageCardsAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LanguageCardsAppTests.debug.xcconfig"; path = "Target Support Files/Pods-LanguageCardsAppTests/Pods-LanguageCardsAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		62A365010DBE618924250015 /* Pods_LanguageCardsAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LanguageCardsAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ADDDCBA8F4987FBD947116B /* Pods-LanguageCardsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LanguageCardsApp.release.xcconfig"; path = "Target Support Files/Pods-LanguageCardsApp/Pods-LanguageCardsApp.release.xcconfig"; sourceTree = "<group>"; };
+		B53DB0D623708BD200A92D27 /* TestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEntity.swift; sourceTree = "<group>"; };
+		B53DB0D823708C0400A92D27 /* ManagedWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedWord.swift; sourceTree = "<group>"; };
+		B53DB0DA23708C1100A92D27 /* ManagedWordDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedWordDictionary.swift; sourceTree = "<group>"; };
+		B53DB0DC23708C2000A92D27 /* ManagedWordTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedWordTranslation.swift; sourceTree = "<group>"; };
 		CCF3C195DEF36A10158F7428 /* Pods_LanguageCardsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LanguageCardsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F54816DA23533B6A008D1A0D /* BaseNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetworking.swift; sourceTree = "<group>"; };
 		F550D9D7234D03810054F531 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		F550D9D9234D03BA0054F531 /* CoreDataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPersistence.swift; sourceTree = "<group>"; };
 		F550D9DB234D10000054F531 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
-		F56541EC235C573A0090020C /* ManagedRawDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedRawDictionary.swift; sourceTree = SOURCE_ROOT; };
-		F56541EE235C573A0090020C /* ManagedRawDictionaryTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedRawDictionaryTranslation.swift; sourceTree = SOURCE_ROOT; };
-		F56541F0235C573A0090020C /* ManagedRawTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedRawTranslation.swift; sourceTree = SOURCE_ROOT; };
 		F56541F9235C65640090020C /* GetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTests.swift; sourceTree = "<group>"; };
 		F59669DA234E59DF008C65E1 /* CoreDataPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPersistenceTests.swift; sourceTree = "<group>"; };
 		F59CE92823411E3D007A5303 /* LanguageCardsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LanguageCardsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B5866CB8236F22CC00D03492 /* DBEntity */ = {
+			isa = PBXGroup;
+			children = (
+				B53DB0DA23708C1100A92D27 /* ManagedWordDictionary.swift */,
+				B53DB0DC23708C2000A92D27 /* ManagedWordTranslation.swift */,
+				B53DB0D823708C0400A92D27 /* ManagedWord.swift */,
+				B53DB0D623708BD200A92D27 /* TestEntity.swift */,
+			);
+			path = DBEntity;
+			sourceTree = "<group>";
+		};
 		CDA839F02A8A8F737A450CC2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,16 +157,6 @@
 				F550D9D7234D03810054F531 /* Persistence.swift */,
 			);
 			path = Persistence;
-			sourceTree = "<group>";
-		};
-		F55F27B02343C92000DFB4A6 /* DBEntity */ = {
-			isa = PBXGroup;
-			children = (
-				F56541EC235C573A0090020C /* ManagedRawDictionary.swift */,
-				F56541EE235C573A0090020C /* ManagedRawDictionaryTranslation.swift */,
-				F56541F0235C573A0090020C /* ManagedRawTranslation.swift */,
-			);
-			path = DBEntity;
 			sourceTree = "<group>";
 		};
 		F56541F8235C65540090020C /* NetworkingTests */ = {
@@ -247,8 +250,8 @@
 		F59CE95323412106007A5303 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				B5866CB8236F22CC00D03492 /* DBEntity */,
 				F59CE95523412134007A5303 /* Constants.swift */,
-				F55F27B02343C92000DFB4A6 /* DBEntity */,
 				F54C62D12350D8C8008D9CAC /* Networking */,
 				F550D9D6234D03110054F531 /* Persistence */,
 				F5A7004D23490EBF00010D9A /* PlainEntity */,
@@ -498,13 +501,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F56541F6235C573A0090020C /* ManagedRawTranslation.swift in Sources */,
 				F59CE92C23411E3D007A5303 /* AppDelegate.swift in Sources */,
 				F59CE968234128F2007A5303 /* WordListAssembly.swift in Sources */,
+				B53DB0D723708BD200A92D27 /* TestEntity.swift in Sources */,
+				B53DB0DD23708C2000A92D27 /* ManagedWordTranslation.swift in Sources */,
 				F54816DB23533B6A008D1A0D /* BaseNetworking.swift in Sources */,
+				B53DB0D923708C0400A92D27 /* ManagedWord.swift in Sources */,
+				B53DB0DB23708C1100A92D27 /* ManagedWordDictionary.swift in Sources */,
 				F5F793192351CF6700A4CC78 /* CoreDataRequest.swift in Sources */,
 				F550D9D8234D03810054F531 /* Persistence.swift in Sources */,
-				F56541F4235C573A0090020C /* ManagedRawDictionaryTranslation.swift in Sources */,
 				F59CE93123411E3D007A5303 /* LanguageCardsApp.xcdatamodeld in Sources */,
 				F59CE9612341239A007A5303 /* WordListRouter.swift in Sources */,
 				F550D9DC234D10000054F531 /* Operators.swift in Sources */,
@@ -515,7 +520,6 @@
 				F59CE95D23412388007A5303 /* WordListController.swift in Sources */,
 				F5A7006123490FDF00010D9A /* WordTranslation.swift in Sources */,
 				F59EE17023427CCA009A4BB8 /* Storyboard.swift in Sources */,
-				F56541F2235C573A0090020C /* ManagedRawDictionary.swift in Sources */,
 				F59CE95F23412391007A5303 /* WordListViewModel.swift in Sources */,
 				F5A7004C2348ECED00010D9A /* Transformable.swift in Sources */,
 			);

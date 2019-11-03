@@ -8,24 +8,6 @@
 
 import Foundation
 
-// Raw translation model
-
-struct RawTranslation: Decodable {
-    enum Direction: String, Decodable {
-        case enRu = "en-ru"
-        case ruEn = "ru-en"
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case direction = "lang"
-        case translations = "text"
-    }
-    
-    var original: String = ""
-    let direction: Direction
-    let translations: [String]
-}
-
 // Raw dictionary model
 
 struct RawDictionaryResponse: Decodable {
@@ -33,20 +15,21 @@ struct RawDictionaryResponse: Decodable {
         case dictionary = "def"
     }
     
-    let dictionary: [RawDictionary]
+    var iden: String = ""
+    let dictionary: [WordDictionary]
 }
 
-struct RawDictionary: Decodable {
+struct WordDictionary: Decodable {
     enum CodingKeys: String, CodingKey {
         case original = "text"
         case translations = "tr"
     }
     
     let original: String
-    let translations: [RawDictionaryTranslation]
+    let translations: [WordTranslation]
 }
 
-struct RawDictionaryTranslation: Decodable {
+struct WordTranslation: Decodable {
     enum CodingKeys: String, CodingKey {
         case synonims = "syn"
         case means = "mean"
@@ -59,18 +42,15 @@ struct RawDictionaryTranslation: Decodable {
         let text: String
     }
     
-    var original: String = ""
-    var translation: String = ""
+    var translation: String
     let synonims: [String]?
     let means: [String]?
     
     init(
-        original: String,
         translation: String,
         synonims: [String]?,
         means: [String]?
     ) {
-        self.original = original
         self.translation = translation
         self.synonims = synonims
         self.means = means
@@ -97,7 +77,6 @@ struct RawDictionaryTranslation: Decodable {
 
 struct Word {
     let create: Date
-    let translation: RawTranslation
-    let dictionary: [RawDictionary]
-    var progressHistory: [Bool]
+    let original: String
+    let dictionary: WordDictionary
 }

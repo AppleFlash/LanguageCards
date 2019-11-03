@@ -26,14 +26,13 @@ DEPENDENCIES:
   - RxTest
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - DifferenceKit
     - ReactiveLists
+    - RxBlocking
     - RxCocoa
     - RxRelay
     - RxSwift
-  trunk:
-    - RxBlocking
     - RxTest
 
 SPEC CHECKSUMS:
@@ -47,4 +46,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f0751dcede20815f5eb92edd6207fe00d189bf41
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
