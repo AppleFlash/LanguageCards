@@ -8,6 +8,7 @@
 
 import CoreData
 
+@objc(ManagedWord)
 final class ManagedWord: NSManagedObject {
     @NSManaged private(set) var create: Date
     @NSManaged private(set) var original: String
@@ -33,17 +34,12 @@ extension ManagedWord: PlainTransformable {
         create = plain.create
         original = plain.original
         
-        let predicate = Predicate().filter(\ManagedWordDictionary.original == original).batch(0..<1)
-        let dictionaryObject: ManagedWordDictionary
-        if let existingObject = context.getOrFetch(with: predicate).first {
-            dictionaryObject = existingObject
-        } else {
-            dictionaryObject = .init(context: context)
-        }
+        let predicate = Predicate().filter(\ManagedWordDictionary.identifier == original).batch(0..<1)
         
-        dictionaryObject.update(from: plain.dictionary)
-        
-        dictionary = dictionaryObject
+        dictionary = context.getOrCreateObject(
+            predicate,
+            using: plain.dictionary
+        )
     }
 }
 

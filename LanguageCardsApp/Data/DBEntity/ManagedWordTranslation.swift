@@ -8,6 +8,7 @@
 
 import CoreData
 
+@objc(ManagedWordTranslation)
 final class ManagedWordTranslation: NSManagedObject {
     @NSManaged private(set) var translation: String
     @NSManaged private(set) var synonims: [String]

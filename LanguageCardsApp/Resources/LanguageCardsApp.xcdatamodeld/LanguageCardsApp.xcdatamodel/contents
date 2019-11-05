@@ -1,37 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18G87" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="RawDictionary" representedClassName=".ManagedRawDictionary" syncable="YES">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedWord" representedClassName="ManagedWord" syncable="YES" codeGenerationType="class">
+        <attribute name="create" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="original" attributeType="String" defaultValueString=""/>
-        <relationship name="translations" toMany="YES" deletionRule="Nullify" destinationEntity="RawDictionaryTranslation" inverseName="rawDictionary" inverseEntity="RawDictionaryTranslation"/>
-        <relationship name="word" maxCount="1" deletionRule="Nullify" destinationEntity="Word" inverseName="dictionary" inverseEntity="Word"/>
+        <relationship name="dictionary" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedWordDictionary" inverseName="word" inverseEntity="ManagedWordDictionary"/>
     </entity>
-    <entity name="RawDictionaryTranslation" representedClassName=".ManagedRawDictionaryTranslation" syncable="YES">
-        <attribute name="means" optional="YES" attributeType="Transformable" valueTransformerName="[String]"/>
-        <attribute name="synonims" optional="YES" attributeType="Transformable" valueTransformerName="[String]"/>
+    <entity name="ManagedWordDictionary" representedClassName="ManagedWordDictionary" syncable="YES" codeGenerationType="class">
+        <attribute name="original" attributeType="String" defaultValueString=""/>
+        <relationship name="translations" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedWordTranslation" inverseName="dictionary" inverseEntity="ManagedWordTranslation"/>
+        <relationship name="word" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedWord" inverseName="dictionary" inverseEntity="ManagedWord"/>
+    </entity>
+    <entity name="ManagedWordTranslation" representedClassName="ManagedWordTranslation" syncable="YES" codeGenerationType="class">
+        <attribute name="means" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="synonims" attributeType="Transformable" customClassName="[String]"/>
         <attribute name="translation" attributeType="String" defaultValueString=""/>
-        <relationship name="rawDictionary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RawDictionary" inverseName="translations" inverseEntity="RawDictionary"/>
-    </entity>
-    <entity name="RawTranslation" representedClassName=".ManagedRawTranslation" syncable="YES">
-        <attribute name="direction" attributeType="String" defaultValueString="en-ru"/>
-        <attribute name="original" attributeType="String" defaultValueString=""/>
-        <attribute name="translations" attributeType="Transformable" valueTransformerName="[NSString]"/>
-        <relationship name="word" maxCount="1" deletionRule="Nullify" destinationEntity="Word" inverseName="translation" inverseEntity="Word"/>
+        <relationship name="dictionary" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedWordDictionary" inverseName="translations" inverseEntity="ManagedWordDictionary"/>
     </entity>
     <entity name="TestEntity" representedClassName="TestEntity" syncable="YES">
         <attribute name="identifier" attributeType="String" defaultValueString=""/>
         <attribute name="name" attributeType="String"/>
     </entity>
-    <entity name="Word" representedClassName="ManagedWord" syncable="YES">
-        <attribute name="create" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="identifier" attributeType="String"/>
-        <relationship name="dictionary" toMany="YES" deletionRule="Nullify" destinationEntity="RawDictionary" inverseName="word" inverseEntity="RawDictionary"/>
-        <relationship name="translation" maxCount="1" deletionRule="Nullify" destinationEntity="RawTranslation" inverseName="word" inverseEntity="RawTranslation"/>
-    </entity>
     <elements>
-        <element name="RawDictionary" positionX="135" positionY="72" width="128" height="28"/>
-        <element name="RawDictionaryTranslation" positionX="144" positionY="81" width="128" height="103"/>
-        <element name="RawTranslation" positionX="126" positionY="63" width="128" height="28"/>
         <element name="TestEntity" positionX="135" positionY="72" width="128" height="73"/>
-        <element name="Word" positionX="135" positionY="108" width="128" height="103"/>
+        <element name="ManagedWordTranslation" positionX="135" positionY="90" width="128" height="103"/>
+        <element name="ManagedWordDictionary" positionX="144" positionY="117" width="128" height="88"/>
+        <element name="ManagedWord" positionX="162" positionY="135" width="128" height="88"/>
     </elements>
 </model>

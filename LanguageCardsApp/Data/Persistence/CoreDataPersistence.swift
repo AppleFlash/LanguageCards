@@ -368,4 +368,37 @@ extension NSManagedObjectContext {
         
         return (try? fetch(fetchRequest)) ?? []
     }
+    
+    func getOrCreateCollection<T: PlainTransformable>(
+        _ predicate: Predicate<T>,
+        using plains: [T.PlainType]
+    ) -> Set<T> {
+        let existingObjects = getOrFetch(with: predicate)
+        let newObjects = plains
+            .filter { plain in
+                !existingObjects.contains { plain.identifier == $0.identifier }
+            }
+            .map { plain -> T in
+                let object = T(context: self)
+                object.update(from: plain)
+                return object
+            }
+        
+        return Set(existingObjects + newObjects)
+    }
+    
+    func getOrCreateObject<T: PlainTransformable>(
+        _ predicate: Predicate<T>,
+        using plain: T.PlainType
+    ) -> T {
+        let object: T
+        if let existingObject = getOrFetch(with: predicate).first {
+            object = existingObject
+        } else {
+            object = T(context: self)
+        }
+        object.update(from: plain)
+        
+        return object
+    }
 }

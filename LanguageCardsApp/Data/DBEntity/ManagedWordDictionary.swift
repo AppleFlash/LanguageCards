@@ -8,6 +8,7 @@
 
 import CoreData
 
+@objc(ManagedWordDictionary)
 final class ManagedWordDictionary: NSManagedObject {
     @NSManaged private(set) var original: String
     @NSManaged private(set) var translations: Set<ManagedWordTranslation>
@@ -29,7 +30,7 @@ extension ManagedWordDictionary: PlainTransformable {
             fatalError()
         }
         
-        self.original = plain.original
+        original = plain.original
         
         let predicate = Predicate().filter(
             .key(
@@ -37,18 +38,11 @@ extension ManagedWordDictionary: PlainTransformable {
                 in: plain.translations.map { $0.translation }
             )
         )
-        let existingObjects = context.getOrFetch(with: predicate)
-        let newObjects = plain.translations
-            .filter { plain in
-                !existingObjects.contains { plain.identifier == $0.identifier }
-            }
-        .map { plain -> ManagedWordTranslation in
-            let object = ManagedWordTranslation(context: context)
-            object.update(from: plain)
-            return object
-        }
         
-        translations = Set(existingObjects + newObjects)
+        translations = context.getOrCreateCollection(
+            predicate, using:
+            plain.translations
+        )
     }
 }
 
