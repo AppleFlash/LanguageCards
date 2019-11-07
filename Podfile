@@ -15,6 +15,8 @@ target 'LanguageCardsApp' do
     # Pods for testing
     pod 'RxTest'
     pod 'RxBlocking'
+    pod 'Quick'
+    pod 'Nimble'
   end
 
 end
