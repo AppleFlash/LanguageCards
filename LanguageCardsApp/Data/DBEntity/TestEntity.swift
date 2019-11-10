@@ -8,34 +8,61 @@
 
 import CoreData
 
+
+extension String {
+    static func random(length: Int = 10) -> String {
+        let characterSet = "qwertyuiop[]\';lkjhgfdsazxcvbnm,./QWERTYUIOPLKJHGFDSAZXCVBNM1234567890-="
+        var newString = ""
+        for _ in 0..<10 {
+            newString += String(characterSet.randomElement() ?? Character(""))
+        }
+        
+        return newString
+    }
+}
+
 @objc(TestEntity)
 public class TestEntity: NSManagedObject, PlainTransformable {
-    typealias PlainType = PlainTestEntity
+    public typealias PlainType = PlainTestEntity
     
     @NSManaged public var identifier: String
     @NSManaged public var name: String
+    @NSManaged public var changeableField: String
     
-    var plainObject: PlainType {
+    public var plainObject: PlainType {
         return .init(
             identifier: identifier,
-            name: name
+            name: name,
+            changeableField: changeableField
         )
     }
     
-    required convenience init() {
-        fatalError()
-    }
-    
-    func update(from plain: PlainType) {
+    public func update(from plain: PlainType) {
         self.identifier = plain.identifier
         self.name = plain.name
+        self.changeableField = plain.changeableField
     }
 }
 
-struct PlainTestEntity: ManagedTransformable, Equatable {
-    typealias ManagedType = TestEntity
+public struct PlainTestEntity: TestCoreDataPlainObject, Equatable {
+    public typealias ManagedType = TestEntity
     
-    let identifier: String
-    var name: String
+    public let identifier: String
+    let name: String
+    var changeableField: String
+    
+    static func new() -> PlainTestEntity {
+        return .init(identifier: UUID().uuidString, name: .random(), changeableField: .random())
+    }
+    
+    static func identicalPredicate(with object: PlainTestEntity) -> TypedPredicate<ManagedType> {
+        return \ManagedType.identifier == object.identifier
+    }
 }
 
+protocol TestCoreDataPlainObject: ManagedTransformable {
+    var changeableField: String { get set }
+    
+    static func new() -> Self
+    static func identicalPredicate(with object: Self) -> TypedPredicate<Self.ManagedType>
+}

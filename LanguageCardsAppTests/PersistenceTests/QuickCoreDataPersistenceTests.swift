@@ -16,113 +16,18 @@ import RxTest
 
 @testable import LanguageCardsApp
 
-class QuickCoreDataPersistenceTests: QuickSpec {
-    private let sortBlock: (PlainTestEntity, PlainTestEntity) -> Bool = { $0.identifier < $1.identifier }
-    
-    override func spec() {
-        describe("core data") {
-            var inMemoryPersistence: Persistence!
-            var sqlPersistence: Persistence!
-            
-            beforeEach {
-                self.clear(persistences: [inMemoryPersistence, sqlPersistence])
-                inMemoryPersistence = CoreDataPersistence(coordinatorType: .inMemory)
-                sqlPersistence = CoreDataPersistence(coordinatorType: .SQLite)
-            }
-            
-            context("retrieve objects") {
-                it("has valid array") {
-                    let plain1 = self.makePlain()
-                    let plain2 = self.makePlain()
-                    let plainObjects = [plain1, plain2].sorted(by: self.sortBlock)
-                    
-                    self.saveObjects(plainObjects, to: inMemoryPersistence)
-                    let savedObjects = self.getAll(from: inMemoryPersistence)?.sorted(by: self.sortBlock)
-                    
-                    expect(savedObjects) == plainObjects
-                }
-                
-                it("has valid object") {
-                    let plain = self.makePlain()
-                    self.saveObject(plain, to: inMemoryPersistence)
-                    let predicate = Predicate().filter(\PlainTestEntity.ManagedType.identifier == plain.identifier)
-                    let savedObject: PlainTestEntity?? = try? inMemoryPersistence
-                    .getObject(with: predicate)
-                        .toBlocking()
-                        .first()
-                    
-                    expect(savedObject) == plain
-                }
-            }
-            
-            context("change operations") {
-                it("valid insert") {
-                    self.saveObject(self.makePlain(), to: inMemoryPersistence)
-                }
-                
-                it("update existing object") {
-                    var plain = self.makePlain()
-                    self.saveObject(plain, to: inMemoryPersistence)
-                    plain.name = .random()
-                    self.saveObject(plain, to: inMemoryPersistence)
-                    
-                    let savedObjects = self.getAll(from: inMemoryPersistence)
-                    
-                    expect(savedObjects).to(haveCount(1))
-                    expect(savedObjects?.first) == plain
-                }
-                
-                it("delete single object") {
-                    var objects = [self.makePlain(), self.makePlain()].sorted(by: self.sortBlock)
-                    let deletedObject = objects.remove(at: 0)
-                    self.clear(persistences: [sqlPersistence])
-                    
-                    expect(self.getAll(from: sqlPersistence)).to(beEmpty())
-                    self.saveObjects(objects, to: sqlPersistence)
-                    
-                    let predicate = Predicate().filter(\PlainTestEntity.ManagedType.identifier == deletedObject.identifier)
-                    let savedObjects: [PlainTestEntity]? = try? sqlPersistence
-                        .delete(PlainTestEntity.self, predicate: predicate)
-                        .flatMap { sqlPersistence.getAll(PlainTestEntity.self) }
-                        .toBlocking()
-                        .first()?
-                        .sorted(by: self.sortBlock)
-                    
-                    expect(savedObjects) == objects
-                }
-            }
-            
-            context("utils") {
-                it("executes in valid queue") {
-                    let disposeBag = DisposeBag()
-                    waitUntil { done in
-                        inMemoryPersistence.getAll(PlainTestEntity.self)
-                            .subscribe(onSuccess: { _ in
-                                expect(Thread.isMainThread) == false
-                                done()
-                            })
-                            .disposed(by: disposeBag)
-                    }
-                }
-            }
-        }
-    }
-}
-
-private extension QuickCoreDataPersistenceTests {
-    func clear(persistences: [Persistence?]) {
-        persistences.forEach {
-            _ = try? $0?.clear().toBlocking().first()
-        }
+class CoreDataMockService<T: TestCoreDataPlainObject> {
+    var rawType: T.Type {
+        return T.self
     }
     
-    func makePlain(_ name: String = .random()) -> PlainTestEntity {
-        return .init(identifier: UUID().uuidString, name: name)
+    func makePlain() -> T {
+        return T.new()
     }
     
-    func saveObject(
-        _ object: PlainTestEntity,
-        to persistence: Persistence,
+    func save(
+        object: T,
+        using persistence: Persistence,
         file: String = #file,
         line: UInt = #line
     ) {
@@ -133,8 +38,8 @@ private extension QuickCoreDataPersistenceTests {
         ).toNot(throwError())
     }
     
-    func saveObjects(
-        _ objects: [PlainTestEntity],
+    func save(
+        objects: [T],
         to persistence: Persistence,
         file: String = #file,
         line: UInt = #line
@@ -147,16 +52,146 @@ private extension QuickCoreDataPersistenceTests {
     }
     
     func getAll(
-        from persistence: Persistence,
+        using persistence: Persistence,
         file: String = #file,
         line: UInt = #line
-    ) -> [PlainTestEntity]? {
+    ) -> [T] {
         let objects = try? persistence
-            .getAll(PlainTestEntity.self)
+            .getObjects(T.self)
             .toBlocking()
             .first()
         expect(objects, file: file, line: line).toNot(beNil())
         
-        return objects
+        return objects!
+    }
+    
+    func get(
+        with predicate: LanguageCardsApp.Predicate<T.ManagedType>,
+        using persistence: Persistence,
+        file: String = #file,
+        line: UInt = #line
+    ) -> T {
+        let object: T?? = try? persistence.getObject(using: predicate)
+            .toBlocking()
+            .last()
+        
+        expect(object, file: file, line: line).toNot(beNil())
+        
+        return object!!
+    }
+    
+    func delete(
+        with predicate: LanguageCardsApp.Predicate<T.ManagedType>,
+        using persistence: Persistence,
+        file: String = #file,
+        line: UInt = #line
+    ) {
+        expect(
+            try persistence.delete(T.self, predicate: predicate)
+                .toBlocking()
+                .first(),
+            file: file,
+            line: line
+        ).toNot(throwError())
+    }
+}
+
+extension Array where Element: TestCoreDataPlainObject {
+    func sortedById() -> [Element] {
+        return sorted { $0.identifier < $1.identifier }
+    }
+}
+
+class QuickCoreDataPersistenceTests: QuickSpec {
+    override func spec() {
+        describe("core data") {
+            var inMemoryPersistence: Persistence!
+            var sqlPersistence: Persistence!
+            var mock: CoreDataMockService<PlainTestEntity>!
+            
+            beforeEach {
+                self.clear(persistences: [inMemoryPersistence, sqlPersistence])
+                inMemoryPersistence = CoreDataPersistence(coordinatorType: .inMemory)
+                sqlPersistence = CoreDataPersistence(coordinatorType: .SQLite)
+                mock = .init()
+            }
+            
+            context("retrieve objects") {
+                it("has valid array") {
+                    let plain1 = mock.makePlain()
+                    let plain2 = mock.makePlain()
+                    let plainObjects = [plain1, plain2].sortedById()
+                    
+                    mock.save(objects: plainObjects, to: inMemoryPersistence)
+                    let savedObjects = mock.getAll(using: inMemoryPersistence).sortedById()
+                    
+                    expect(savedObjects) == plainObjects
+                }
+                
+                it("has valid object") {
+                    let plain = mock.makePlain()
+                    mock.save(object: plain, using: inMemoryPersistence)
+                    
+                    let predicate = Predicate().filter(mock.rawType.identicalPredicate(with: plain))
+                    let savedObject = mock.get(with: predicate, using: inMemoryPersistence)
+                    
+                    expect(savedObject) == plain
+                }
+            }
+            
+            context("change operations") {
+                it("valid insert") {
+                    mock.save(object: mock.makePlain(), using: inMemoryPersistence)
+                }
+                
+                it("update existing object") {
+                    var plain = mock.makePlain()
+                    mock.save(object: plain, using: inMemoryPersistence)
+                    plain.changeableField = .random()
+                    mock.save(object: plain, using: inMemoryPersistence)
+                    
+                    let savedObjects = mock.getAll(using: inMemoryPersistence)
+                    
+                    expect(savedObjects).to(haveCount(1))
+                    expect(savedObjects.first) == plain
+                }
+                
+                it("delete single object") {
+                    var objects = [mock.makePlain(), mock.makePlain()].sortedById()
+                    let deletedObject = objects.remove(at: 0)
+                    self.clear(persistences: [sqlPersistence])
+                    
+                    
+                    expect(mock.getAll(using: sqlPersistence)).to(beEmpty())
+                    mock.save(objects: objects, to: sqlPersistence)
+                    
+                    let predicate = Predicate().filter(mock.rawType.identicalPredicate(with: deletedObject))
+                    mock.delete(with: predicate, using: sqlPersistence)
+                    let savedObjects = mock.getAll(using: sqlPersistence).sortedById()
+                    
+                    expect(savedObjects) == objects
+                }
+            }
+            
+            context("utils") {
+                it("executes in valid queue") {
+                    let disposeBag = DisposeBag()
+                    waitUntil { done in
+                        inMemoryPersistence.getObjects(mock.rawType)
+                            .subscribe(onSuccess: { _ in
+                                expect(Thread.isMainThread) == false
+                                done()
+                            })
+                            .disposed(by: disposeBag)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func clear(persistences: [Persistence?]) {
+        persistences.forEach {
+            _ = try? $0?.clear().toBlocking().first()
+        }
     }
 }

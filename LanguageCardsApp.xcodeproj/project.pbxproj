@@ -21,7 +21,6 @@
 		F56541FA235C65640090020C /* GetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56541F9235C65640090020C /* GetTests.swift */; };
 		F57F8A03237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F8A02237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift */; };
 		F57F8A05237480DB000F6C79 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F8A04237480DB000F6C79 /* Utils.swift */; };
-		F59669DB234E59DF008C65E1 /* CoreDataPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59669DA234E59DF008C65E1 /* CoreDataPersistenceTests.swift */; };
 		F59CE92C23411E3D007A5303 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92B23411E3D007A5303 /* AppDelegate.swift */; };
 		F59CE93123411E3D007A5303 /* LanguageCardsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92F23411E3D007A5303 /* LanguageCardsApp.xcdatamodeld */; };
 		F59CE93523411E3F007A5303 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F59CE93423411E3F007A5303 /* Assets.xcassets */; };
@@ -37,6 +36,7 @@
 		F59EE17023427CCA009A4BB8 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EE16F23427CCA009A4BB8 /* Storyboard.swift */; };
 		F5A7004C2348ECED00010D9A /* Transformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7004B2348ECED00010D9A /* Transformable.swift */; };
 		F5A7006123490FDF00010D9A /* WordTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7006023490FDF00010D9A /* WordTranslation.swift */; };
+		F5D3325D2375B3EB000458F5 /* CoreDataRequstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D3325C2375B3EB000458F5 /* CoreDataRequstTests.swift */; };
 		F5F793172351CF5100A4CC78 /* Predicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F793162351CF5100A4CC78 /* Predicate.swift */; };
 		F5F793192351CF6700A4CC78 /* CoreDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F793182351CF6700A4CC78 /* CoreDataRequest.swift */; };
 /* End PBXBuildFile section */
@@ -69,7 +69,6 @@
 		F56541F9235C65640090020C /* GetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTests.swift; sourceTree = "<group>"; };
 		F57F8A02237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCoreDataPersistenceTests.swift; sourceTree = "<group>"; };
 		F57F8A04237480DB000F6C79 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		F59669DA234E59DF008C65E1 /* CoreDataPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPersistenceTests.swift; sourceTree = "<group>"; };
 		F59CE92823411E3D007A5303 /* LanguageCardsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LanguageCardsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59CE92B23411E3D007A5303 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F59CE93023411E3D007A5303 /* LanguageCardsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LanguageCardsApp.xcdatamodel; sourceTree = "<group>"; };
@@ -89,6 +88,7 @@
 		F59EE16F23427CCA009A4BB8 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		F5A7004B2348ECED00010D9A /* Transformable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformable.swift; sourceTree = "<group>"; };
 		F5A7006023490FDF00010D9A /* WordTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTranslation.swift; sourceTree = "<group>"; };
+		F5D3325C2375B3EB000458F5 /* CoreDataRequstTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRequstTests.swift; sourceTree = "<group>"; };
 		F5F793162351CF5100A4CC78 /* Predicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predicate.swift; sourceTree = "<group>"; };
 		F5F793182351CF6700A4CC78 /* CoreDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRequest.swift; sourceTree = "<group>"; };
 		F620BB4FCF5BE5DD6F7C6C93 /* Pods-LanguageCardsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LanguageCardsAppTests.release.xcconfig"; path = "Target Support Files/Pods-LanguageCardsAppTests/Pods-LanguageCardsAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,9 +174,9 @@
 		F59669D9234E5979008C65E1 /* PersistenceTests */ = {
 			isa = PBXGroup;
 			children = (
-				F59669DA234E59DF008C65E1 /* CoreDataPersistenceTests.swift */,
 				F53981EA2373221900AEA1B0 /* PredicateTests.swift */,
 				F57F8A02237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift */,
+				F5D3325C2375B3EB000458F5 /* CoreDataRequstTests.swift */,
 			);
 			path = PersistenceTests;
 			sourceTree = "<group>";
@@ -536,9 +536,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F57F8A05237480DB000F6C79 /* Utils.swift in Sources */,
-				F59669DB234E59DF008C65E1 /* CoreDataPersistenceTests.swift in Sources */,
 				F53981EB2373221900AEA1B0 /* PredicateTests.swift in Sources */,
 				F57F8A03237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift in Sources */,
+				F5D3325D2375B3EB000458F5 /* CoreDataRequstTests.swift in Sources */,
 				F56541FA235C65640090020C /* GetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,16 +14,16 @@ final class PersistenceFactory {
 }
 
 protocol Persistence: class {
-    func getAll<T: ManagedTransformable>(
+    func getObjects<T: ManagedTransformable>(
         _: T.Type
     ) -> Single<[T]>
     
-    func get<T: ManagedTransformable>(
-        _ predicate: Predicate<T.ManagedType>
+    func getObjects<T: ManagedTransformable>(
+        using predicate: Predicate<T.ManagedType>
     ) -> Single<[T]>
     
     func getObject<T: ManagedTransformable>(
-        with predicate: Predicate<T.ManagedType>
+        using predicate: Predicate<T.ManagedType>
     ) -> Single<T?>
     
     func save<T: ManagedTransformable>(

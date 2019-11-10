@@ -150,22 +150,22 @@ final class CoreDataPersistence {
 }
 
 extension CoreDataPersistence: Persistence {
-    func getAll<T: ManagedTransformable>(
+    func getObjects<T: ManagedTransformable>(
         _: T.Type
     ) -> Single<[T]> {
         return getManagedObjects(T.self, nil)
             .map { $0.map { $0.plainObject } }
     }
     
-    func get<T: ManagedTransformable>(
-        _ predicate: Predicate<T.ManagedType>
+    func getObjects<T: ManagedTransformable>(
+        using predicate: Predicate<T.ManagedType>
     ) -> Single<[T]> {
         return getManagedObjects(T.self, predicate)
             .map { $0.map { $0.plainObject } }
     }
     
     func getObject<T: ManagedTransformable>(
-        with predicate: Predicate<T.ManagedType>
+        using predicate: Predicate<T.ManagedType>
     ) -> Single<T?> {
         return getManagedObjects(T.self, predicate)
             .map { $0.first }
