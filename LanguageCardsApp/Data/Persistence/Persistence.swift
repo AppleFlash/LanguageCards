@@ -10,7 +10,7 @@ import CoreData
 import RxSwift
 
 final class PersistenceFactory {
-    static let persistence: Persistence = CoreDataPersistence(coordinatorType: .SQLite)
+    static let persistence: Persistence = CoreDataPersistence(coordinatorType: .SQLite, containerName: "LanguageCardsApp")
 }
 
 protocol Persistence: class {

@@ -18,9 +18,11 @@
 		F550D9D8234D03810054F531 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550D9D7234D03810054F531 /* Persistence.swift */; };
 		F550D9DA234D03BA0054F531 /* CoreDataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550D9D9234D03BA0054F531 /* CoreDataPersistence.swift */; };
 		F550D9DC234D10000054F531 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F550D9DB234D10000054F531 /* Operators.swift */; };
+		F557DAFA2379CD5200E5BD15 /* TestLanguageCardsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F557DAF62379CB6000E5BD15 /* TestLanguageCardsApp.xcdatamodeld */; };
+		F557DAFE2379CF1C00E5BD15 /* TestParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F557DAFD2379CF1C00E5BD15 /* TestParent.swift */; };
+		F557DB002379CF2700E5BD15 /* TestChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = F557DAFF2379CF2700E5BD15 /* TestChild.swift */; };
 		F56541FA235C65640090020C /* GetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56541F9235C65640090020C /* GetTests.swift */; };
 		F57F8A03237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F8A02237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift */; };
-		F57F8A05237480DB000F6C79 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F8A04237480DB000F6C79 /* Utils.swift */; };
 		F59CE92C23411E3D007A5303 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92B23411E3D007A5303 /* AppDelegate.swift */; };
 		F59CE93123411E3D007A5303 /* LanguageCardsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92F23411E3D007A5303 /* LanguageCardsApp.xcdatamodeld */; };
 		F59CE93523411E3F007A5303 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F59CE93423411E3F007A5303 /* Assets.xcassets */; };
@@ -66,9 +68,11 @@
 		F550D9D7234D03810054F531 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		F550D9D9234D03BA0054F531 /* CoreDataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPersistence.swift; sourceTree = "<group>"; };
 		F550D9DB234D10000054F531 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		F557DAF72379CB6000E5BD15 /* TestLanguageCardsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestLanguageCardsApp.xcdatamodel; sourceTree = "<group>"; };
+		F557DAFD2379CF1C00E5BD15 /* TestParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestParent.swift; sourceTree = "<group>"; };
+		F557DAFF2379CF2700E5BD15 /* TestChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestChild.swift; sourceTree = "<group>"; };
 		F56541F9235C65640090020C /* GetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTests.swift; sourceTree = "<group>"; };
 		F57F8A02237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCoreDataPersistenceTests.swift; sourceTree = "<group>"; };
-		F57F8A04237480DB000F6C79 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F59CE92823411E3D007A5303 /* LanguageCardsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LanguageCardsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59CE92B23411E3D007A5303 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F59CE93023411E3D007A5303 /* LanguageCardsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LanguageCardsApp.xcdatamodel; sourceTree = "<group>"; };
@@ -126,10 +130,10 @@
 		B5866CB8236F22CC00D03492 /* DBEntity */ = {
 			isa = PBXGroup;
 			children = (
+				F557DAFC2379CDC900E5BD15 /* TestEntities */,
 				B53DB0DA23708C1100A92D27 /* ManagedWordDictionary.swift */,
 				B53DB0DC23708C2000A92D27 /* ManagedWordTranslation.swift */,
 				B53DB0D823708C0400A92D27 /* ManagedWord.swift */,
-				B53DB0D623708BD200A92D27 /* TestEntity.swift */,
 			);
 			path = DBEntity;
 			sourceTree = "<group>";
@@ -161,6 +165,16 @@
 				F550D9D7234D03810054F531 /* Persistence.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		F557DAFC2379CDC900E5BD15 /* TestEntities */ = {
+			isa = PBXGroup;
+			children = (
+				B53DB0D623708BD200A92D27 /* TestEntity.swift */,
+				F557DAFD2379CF1C00E5BD15 /* TestParent.swift */,
+				F557DAFF2379CF2700E5BD15 /* TestChild.swift */,
+			);
+			path = TestEntities;
 			sourceTree = "<group>";
 		};
 		F56541F8235C65540090020C /* NetworkingTests */ = {
@@ -221,7 +235,6 @@
 				F56541F8235C65540090020C /* NetworkingTests */,
 				F59669D9234E5979008C65E1 /* PersistenceTests */,
 				F59CE94723411E40007A5303 /* Info.plist */,
-				F57F8A04237480DB000F6C79 /* Utils.swift */,
 			);
 			path = LanguageCardsAppTests;
 			sourceTree = "<group>";
@@ -240,6 +253,7 @@
 				F59CE93423411E3F007A5303 /* Assets.xcassets */,
 				F59CE93923411E3F007A5303 /* LaunchScreen.storyboard */,
 				F59CE93C23411E3F007A5303 /* Info.plist */,
+				F557DAF62379CB6000E5BD15 /* TestLanguageCardsApp.xcdatamodeld */,
 				F59CE92F23411E3D007A5303 /* LanguageCardsApp.xcdatamodeld */,
 			);
 			path = Resources;
@@ -514,18 +528,21 @@
 				F54816DB23533B6A008D1A0D /* BaseNetworking.swift in Sources */,
 				B53DB0D923708C0400A92D27 /* ManagedWord.swift in Sources */,
 				B53DB0DB23708C1100A92D27 /* ManagedWordDictionary.swift in Sources */,
+				F557DAFE2379CF1C00E5BD15 /* TestParent.swift in Sources */,
 				F5F793192351CF6700A4CC78 /* CoreDataRequest.swift in Sources */,
 				F550D9D8234D03810054F531 /* Persistence.swift in Sources */,
 				F59CE93123411E3D007A5303 /* LanguageCardsApp.xcdatamodeld in Sources */,
 				F59CE9612341239A007A5303 /* WordListRouter.swift in Sources */,
 				F550D9DC234D10000054F531 /* Operators.swift in Sources */,
 				F59CE95623412134007A5303 /* Constants.swift in Sources */,
+				F557DB002379CF2700E5BD15 /* TestChild.swift in Sources */,
 				F550D9DA234D03BA0054F531 /* CoreDataPersistence.swift in Sources */,
 				F59CE96623412629007A5303 /* SavedWordsService.swift in Sources */,
 				F5F793172351CF5100A4CC78 /* Predicate.swift in Sources */,
 				F59CE95D23412388007A5303 /* WordListController.swift in Sources */,
 				F5A7006123490FDF00010D9A /* WordTranslation.swift in Sources */,
 				F59EE17023427CCA009A4BB8 /* Storyboard.swift in Sources */,
+				F557DAFA2379CD5200E5BD15 /* TestLanguageCardsApp.xcdatamodeld in Sources */,
 				F59CE95F23412391007A5303 /* WordListViewModel.swift in Sources */,
 				F5A7004C2348ECED00010D9A /* Transformable.swift in Sources */,
 			);
@@ -535,7 +552,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F57F8A05237480DB000F6C79 /* Utils.swift in Sources */,
 				F53981EB2373221900AEA1B0 /* PredicateTests.swift in Sources */,
 				F57F8A03237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift in Sources */,
 				F5D3325D2375B3EB000458F5 /* CoreDataRequstTests.swift in Sources */,
@@ -798,6 +814,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		F557DAF62379CB6000E5BD15 /* TestLanguageCardsApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F557DAF72379CB6000E5BD15 /* TestLanguageCardsApp.xcdatamodel */,
+			);
+			currentVersion = F557DAF72379CB6000E5BD15 /* TestLanguageCardsApp.xcdatamodel */;
+			path = TestLanguageCardsApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		F59CE92F23411E3D007A5303 /* LanguageCardsApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

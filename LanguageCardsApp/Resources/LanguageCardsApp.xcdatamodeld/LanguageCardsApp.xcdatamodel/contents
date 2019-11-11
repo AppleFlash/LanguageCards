@@ -16,15 +16,9 @@
         <attribute name="translation" attributeType="String" defaultValueString=""/>
         <relationship name="dictionary" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedWordDictionary" inverseName="translations" inverseEntity="ManagedWordDictionary"/>
     </entity>
-    <entity name="TestEntity" representedClassName="TestEntity" syncable="YES">
-        <attribute name="changeableField" attributeType="String"/>
-        <attribute name="identifier" attributeType="String"/>
-        <attribute name="name" attributeType="String"/>
-    </entity>
     <elements>
         <element name="ManagedWord" positionX="162" positionY="135" width="128" height="88"/>
         <element name="ManagedWordDictionary" positionX="144" positionY="117" width="128" height="88"/>
         <element name="ManagedWordTranslation" positionX="135" positionY="90" width="128" height="103"/>
-        <element name="TestEntity" positionX="162" positionY="162" width="128" height="88"/>
     </elements>
 </model>

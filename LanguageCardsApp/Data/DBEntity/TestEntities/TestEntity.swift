@@ -8,7 +8,6 @@
 
 import CoreData
 
-
 extension String {
     static func random(length: Int = 10) -> String {
         let characterSet = "qwertyuiop[]\';lkjhgfdsazxcvbnm,./QWERTYUIOPLKJHGFDSAZXCVBNM1234567890-="
@@ -19,6 +18,13 @@ extension String {
         
         return newString
     }
+}
+
+protocol TestCoreDataPlainObject: ManagedTransformable {
+    var changeableField: String { get set }
+    
+    static func new() -> Self
+    static func identicalPredicate(with object: Self) -> TypedPredicate<Self.ManagedType>
 }
 
 @objc(TestEntity)
@@ -58,11 +64,4 @@ public struct PlainTestEntity: TestCoreDataPlainObject, Equatable {
     static func identicalPredicate(with object: PlainTestEntity) -> TypedPredicate<ManagedType> {
         return \ManagedType.identifier == object.identifier
     }
-}
-
-protocol TestCoreDataPlainObject: ManagedTransformable {
-    var changeableField: String { get set }
-    
-    static func new() -> Self
-    static func identicalPredicate(with object: Self) -> TypedPredicate<Self.ManagedType>
 }

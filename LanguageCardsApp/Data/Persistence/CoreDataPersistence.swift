@@ -71,9 +71,9 @@ final class CoreDataPersistence {
         return .init(predicate: .init(format: "%K == %@", T.ManagedType.primaryKey, identifier))
     }
     
-    init(coordinatorType: CoordinatorType) {
+    init(coordinatorType: CoordinatorType, containerName: String) {
         self.coordinatorType = coordinatorType
-        container = NSPersistentContainer(name: "LanguageCardsApp")
+        container = NSPersistentContainer(name: containerName)
         container.loadPersistentStores { [unowned self] description, error in
             if let error = error {
                 assertionFailure("Load persistence error \(error)")

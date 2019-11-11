@@ -40,8 +40,8 @@ extension ManagedWordDictionary: PlainTransformable {
         )
         
         translations = context.getOrCreateCollection(
-            predicate, using:
-            plain.translations
+            predicate,
+            using: plain.translations
         )
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="TestChildEntity" representedClassName="TestChildEntity" syncable="YES">
+        <attribute name="age" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="changeableField" attributeType="String" defaultValueString=""/>
+        <attribute name="identifier" attributeType="String" defaultValueString=""/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TestParentEntity" inverseName="childs" inverseEntity="TestParentEntity"/>
+    </entity>
+    <entity name="TestEntity" representedClassName="TestEntity" syncable="YES">
+        <attribute name="changeableField" attributeType="String"/>
+        <attribute name="identifier" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+    </entity>
+    <entity name="TestParentEntity" representedClassName="TestParentEntity" syncable="YES">
+        <attribute name="changeableField" attributeType="String" defaultValueString=""/>
+        <attribute name="identifier" attributeType="String" defaultValueString=""/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <relationship name="childs" toMany="YES" deletionRule="Cascade" destinationEntity="TestChildEntity" inverseName="parent" inverseEntity="TestChildEntity"/>
+    </entity>
+    <elements>
+        <element name="TestEntity" positionX="-54" positionY="-9" width="128" height="88"/>
+        <element name="TestParentEntity" positionX="-36" positionY="36" width="128" height="103"/>
+        <element name="TestChildEntity" positionX="-18" positionY="45" width="128" height="103"/>
+    </elements>
+</model>

@@ -111,8 +111,8 @@ class QuickCoreDataPersistenceTests: QuickSpec {
             
             beforeEach {
                 self.clear(persistences: [inMemoryPersistence, sqlPersistence])
-                inMemoryPersistence = CoreDataPersistence(coordinatorType: .inMemory)
-                sqlPersistence = CoreDataPersistence(coordinatorType: .SQLite)
+                inMemoryPersistence = CoreDataPersistence(coordinatorType: .inMemory, containerName: "TestLanguageCardsApp")
+                sqlPersistence = CoreDataPersistence(coordinatorType: .SQLite, containerName: "TestLanguageCardsApp")
                 mock = .init()
             }
             
@@ -160,7 +160,6 @@ class QuickCoreDataPersistenceTests: QuickSpec {
                     var objects = [mock.makePlain(), mock.makePlain()].sortedById()
                     let deletedObject = objects.remove(at: 0)
                     self.clear(persistences: [sqlPersistence])
-                    
                     
                     expect(mock.getAll(using: sqlPersistence)).to(beEmpty())
                     mock.save(objects: objects, to: sqlPersistence)
