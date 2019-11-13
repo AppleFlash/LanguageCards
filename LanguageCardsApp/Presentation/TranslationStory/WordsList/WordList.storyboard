@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8C8-Rh-0Vz">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Word List Controller-->
+        <scene sceneID="M2d-Th-Olh">
+            <objects>
+                <viewController id="q9l-9B-6jW" customClass="WordListController" customModule="LanguageCardsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2so-68-Q1f">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QLv-HN-hhg">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="У тебя пока нет добавленных слов" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQY-aP-dxt">
+                                <rect key="frame" x="16" y="413.5" width="382" height="69.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3DQ-Wc-bfp">
+                                <rect key="frame" x="137.5" y="802" width="139" height="30"/>
+                                <state key="normal" title="Начать тренировку"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="QLv-HN-hhg" secondAttribute="bottom" id="BoY-9v-n9b"/>
+                            <constraint firstItem="3DQ-Wc-bfp" firstAttribute="centerX" secondItem="2so-68-Q1f" secondAttribute="centerX" id="CGW-h1-qN7"/>
+                            <constraint firstItem="QLv-HN-hhg" firstAttribute="centerX" secondItem="2so-68-Q1f" secondAttribute="centerX" id="MOo-oJ-h6q"/>
+                            <constraint firstItem="wIs-5m-x9I" firstAttribute="bottom" secondItem="3DQ-Wc-bfp" secondAttribute="bottom" constant="30" id="MUt-2y-f04"/>
+                            <constraint firstItem="hQY-aP-dxt" firstAttribute="leading" secondItem="wIs-5m-x9I" secondAttribute="leading" constant="16" id="MZA-W2-qKp"/>
+                            <constraint firstItem="QLv-HN-hhg" firstAttribute="top" secondItem="wIs-5m-x9I" secondAttribute="top" id="OlE-L2-k6R"/>
+                            <constraint firstItem="QLv-HN-hhg" firstAttribute="leading" secondItem="wIs-5m-x9I" secondAttribute="leading" id="SRC-4Q-rNr"/>
+                            <constraint firstItem="wIs-5m-x9I" firstAttribute="trailing" secondItem="QLv-HN-hhg" secondAttribute="trailing" id="TM4-8c-FYR"/>
+                            <constraint firstItem="wIs-5m-x9I" firstAttribute="trailing" secondItem="hQY-aP-dxt" secondAttribute="trailing" constant="16" id="lkz-2J-DcW"/>
+                            <constraint firstItem="hQY-aP-dxt" firstAttribute="centerY" secondItem="2so-68-Q1f" secondAttribute="centerY" id="mA1-sK-x2G"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wIs-5m-x9I"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TOU-k2-Se5">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="Zkd-vd-JtY"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emptyWordsLabel" destination="hQY-aP-dxt" id="ykk-Mw-ajc"/>
+                        <outlet property="startTrainingButton" destination="3DQ-Wc-bfp" id="Oa7-un-I9e"/>
+                        <outlet property="tableView" destination="QLv-HN-hhg" id="YS1-9r-puF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sKq-Ue-OCD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="117.85714285714285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cdM-1g-3eZ">
+            <objects>
+                <navigationController storyboardIdentifier="WordList" automaticallyAdjustsScrollViewInsets="NO" id="8C8-Rh-0Vz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vgs-3n-C4J">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="q9l-9B-6jW" kind="relationship" relationship="rootViewController" id="4U4-Xt-Hi4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bpw-Mo-MN1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="117.85714285714285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="plus" catalog="system" width="64" height="58"/>
+    </resources>
+</document>

@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedWord" representedClassName="ManagedWord" syncable="YES">
+        <attribute name="create" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="original" attributeType="String" defaultValueString=""/>
+        <relationship name="dictionary" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedWordDictionary" inverseName="word" inverseEntity="ManagedWordDictionary"/>
+    </entity>
+    <entity name="ManagedWordDictionary" representedClassName="ManagedWordDictionary" syncable="YES">
+        <attribute name="original" attributeType="String" defaultValueString=""/>
+        <relationship name="translations" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedWordTranslation" inverseName="dictionary" inverseEntity="ManagedWordTranslation"/>
+        <relationship name="word" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedWord" inverseName="dictionary" inverseEntity="ManagedWord"/>
+    </entity>
+    <entity name="ManagedWordTranslation" representedClassName="ManagedWordTranslation" syncable="YES">
+        <attribute name="means" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="synonims" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="translation" attributeType="String" defaultValueString=""/>
+        <relationship name="dictionary" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedWordDictionary" inverseName="translations" inverseEntity="ManagedWordDictionary"/>
+    </entity>
+    <elements>
+        <element name="ManagedWord" positionX="162" positionY="135" width="128" height="88"/>
+        <element name="ManagedWordDictionary" positionX="144" positionY="117" width="128" height="88"/>
+        <element name="ManagedWordTranslation" positionX="135" positionY="90" width="128" height="103"/>
+    </elements>
 </model>

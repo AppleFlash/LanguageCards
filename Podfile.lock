@@ -5,35 +5,53 @@ PODS:
   - DifferenceKit/Core (1.1.3)
   - DifferenceKit/UIKitExtension (1.1.3):
     - DifferenceKit/Core
+  - Nimble (8.0.4)
+  - Quick (2.2.0)
   - ReactiveLists (0.5.1):
     - DifferenceKit (~> 1.1.0)
+  - RxBlocking (5.0.0):
+    - RxSwift (~> 5)
   - RxCocoa (5.0.0):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
+  - RxTest (5.0.0):
+    - RxSwift (~> 5)
 
 DEPENDENCIES:
+  - Nimble
+  - Quick
   - ReactiveLists
+  - RxBlocking
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
+  - RxTest
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - DifferenceKit
+    - Nimble
+    - Quick
     - ReactiveLists
+    - RxBlocking
     - RxCocoa
     - RxRelay
     - RxSwift
+    - RxTest
 
 SPEC CHECKSUMS:
   DifferenceKit: 5018791b6c1fc839921a3c171a0a539ace6ea60c
+  Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
+  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   ReactiveLists: e079707255026c1daa421e1b4ec1ede9f0e6b2dc
+  RxBlocking: c67185d26498ea3cbe3e121917c3c16739e43123
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
 
-PODFILE CHECKSUM: 5b3aec9dd5bd6d1e682b97d9e0d45907659eed90
+PODFILE CHECKSUM: 22381048faeb2339b2f8a447f91c8cfc254b4c33
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.8.3
