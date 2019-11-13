@@ -15,14 +15,14 @@ public class TestParentEntity: NSManagedObject, PlainTransformable {
     @NSManaged public var identifier: String
     @NSManaged public var name: String
     @NSManaged public var changeableField: String
-    @NSManaged public var childs: Set<TestChildEntity>
+    @NSManaged public var childs: Set<TestChildEntity>?
     
     public var plainObject: PlainType {
         return .init(
             identifier: identifier,
             name: name,
             changeableField: changeableField,
-            childs: childs.map { $0.plainObject }
+            childs: childs?.map { $0.plainObject }
         )
     }
     
@@ -40,17 +40,19 @@ public class TestParentEntity: NSManagedObject, PlainTransformable {
 //            predicate,
 //            using: plain.child
 //        )
-        let predicate = Predicate().filter(
-            .key(
-                \TestChildEntity.identifier,
-                in: plain.childs.map { $0.identifier }
+        if let childs = plain.childs {
+            let predicate = Predicate().filter(
+                .key(
+                    \TestChildEntity.identifier,
+                    in: childs.map { $0.identifier }
+                )
             )
-        )
-        
-        childs = context.getOrCreateCollection(
-            predicate,
-            using: plain.childs
-        )
+            
+            self.childs = context.getOrCreateCollection(
+                predicate,
+                using: childs
+            )
+        }
     }
 }
 
@@ -60,7 +62,7 @@ public struct PlainTestParent: TestCoreDataPlainObject, Equatable {
     public var identifier: String
     public let name: String
     public var changeableField: String
-    public var childs: [PlainTestChild]
+    public var childs: [PlainTestChild]?
     
     static func new() -> PlainTestParent {
         return .init(

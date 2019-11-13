@@ -1,5 +1,5 @@
 //
-//  QuickCoreDataPersistenceTests.swift
+//  CoreDataPersistenceTests.swift
 //  LanguageCardsAppTests
 //
 //  Created by Vladislav Sedinkin on 07.11.2019.
@@ -102,12 +102,12 @@ extension Array where Element: TestCoreDataPlainObject {
     }
 }
 
-class QuickCoreDataPersistenceTests: QuickSpec {
+class CoreDataPersistenceTests: QuickSpec {
     override func spec() {
         describe("core data") {
             var inMemoryPersistence: Persistence!
             var sqlPersistence: Persistence!
-            var mock: CoreDataMockService<PlainTestEntity>!
+            var mock: CoreDataMockService<PlainTestParent>!
             
             beforeEach {
                 self.clear(persistences: [inMemoryPersistence, sqlPersistence])

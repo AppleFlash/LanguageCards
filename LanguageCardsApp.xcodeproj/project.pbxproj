@@ -22,7 +22,7 @@
 		F557DAFE2379CF1C00E5BD15 /* TestParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F557DAFD2379CF1C00E5BD15 /* TestParent.swift */; };
 		F557DB002379CF2700E5BD15 /* TestChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = F557DAFF2379CF2700E5BD15 /* TestChild.swift */; };
 		F56541FA235C65640090020C /* GetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56541F9235C65640090020C /* GetTests.swift */; };
-		F57F8A03237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F8A02237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift */; };
+		F57F8A03237472E8000F6C79 /* CoreDataPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F8A02237472E8000F6C79 /* CoreDataPersistenceTests.swift */; };
 		F59CE92C23411E3D007A5303 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92B23411E3D007A5303 /* AppDelegate.swift */; };
 		F59CE93123411E3D007A5303 /* LanguageCardsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F59CE92F23411E3D007A5303 /* LanguageCardsApp.xcdatamodeld */; };
 		F59CE93523411E3F007A5303 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F59CE93423411E3F007A5303 /* Assets.xcassets */; };
@@ -72,7 +72,7 @@
 		F557DAFD2379CF1C00E5BD15 /* TestParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestParent.swift; sourceTree = "<group>"; };
 		F557DAFF2379CF2700E5BD15 /* TestChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestChild.swift; sourceTree = "<group>"; };
 		F56541F9235C65640090020C /* GetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTests.swift; sourceTree = "<group>"; };
-		F57F8A02237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCoreDataPersistenceTests.swift; sourceTree = "<group>"; };
+		F57F8A02237472E8000F6C79 /* CoreDataPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPersistenceTests.swift; sourceTree = "<group>"; };
 		F59CE92823411E3D007A5303 /* LanguageCardsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LanguageCardsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59CE92B23411E3D007A5303 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F59CE93023411E3D007A5303 /* LanguageCardsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LanguageCardsApp.xcdatamodel; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				F53981EA2373221900AEA1B0 /* PredicateTests.swift */,
-				F57F8A02237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift */,
+				F57F8A02237472E8000F6C79 /* CoreDataPersistenceTests.swift */,
 				F5D3325C2375B3EB000458F5 /* CoreDataRequstTests.swift */,
 			);
 			path = PersistenceTests;
@@ -553,7 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F53981EB2373221900AEA1B0 /* PredicateTests.swift in Sources */,
-				F57F8A03237472E8000F6C79 /* QuickCoreDataPersistenceTests.swift in Sources */,
+				F57F8A03237472E8000F6C79 /* CoreDataPersistenceTests.swift in Sources */,
 				F5D3325D2375B3EB000458F5 /* CoreDataRequstTests.swift in Sources */,
 				F56541FA235C65640090020C /* GetTests.swift in Sources */,
 			);
