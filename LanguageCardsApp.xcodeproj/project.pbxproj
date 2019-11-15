@@ -38,6 +38,8 @@
 		F59EE17023427CCA009A4BB8 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EE16F23427CCA009A4BB8 /* Storyboard.swift */; };
 		F5A7004C2348ECED00010D9A /* Transformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7004B2348ECED00010D9A /* Transformable.swift */; };
 		F5A7006123490FDF00010D9A /* WordTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7006023490FDF00010D9A /* WordTranslation.swift */; };
+		F5B8A577237EFD9D004D1C6F /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B8A576237EFD9D004D1C6F /* StateMachine.swift */; };
+		F5B8A57A237F1385004D1C6F /* StateMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B8A579237F1385004D1C6F /* StateMachineTests.swift */; };
 		F5D3325D2375B3EB000458F5 /* CoreDataRequstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D3325C2375B3EB000458F5 /* CoreDataRequstTests.swift */; };
 		F5F793172351CF5100A4CC78 /* Predicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F793162351CF5100A4CC78 /* Predicate.swift */; };
 		F5F793192351CF6700A4CC78 /* CoreDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F793182351CF6700A4CC78 /* CoreDataRequest.swift */; };
@@ -92,6 +94,8 @@
 		F59EE16F23427CCA009A4BB8 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		F5A7004B2348ECED00010D9A /* Transformable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformable.swift; sourceTree = "<group>"; };
 		F5A7006023490FDF00010D9A /* WordTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTranslation.swift; sourceTree = "<group>"; };
+		F5B8A576237EFD9D004D1C6F /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
+		F5B8A579237F1385004D1C6F /* StateMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachineTests.swift; sourceTree = "<group>"; };
 		F5D3325C2375B3EB000458F5 /* CoreDataRequstTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRequstTests.swift; sourceTree = "<group>"; };
 		F5F793162351CF5100A4CC78 /* Predicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predicate.swift; sourceTree = "<group>"; };
 		F5F793182351CF6700A4CC78 /* CoreDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRequest.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 		F550D9D6234D03110054F531 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				B5866CB8236F22CC00D03492 /* DBEntity */,
+				F5A7004D23490EBF00010D9A /* PlainEntity */,
 				F550D9D9234D03BA0054F531 /* CoreDataPersistence.swift */,
 				F5F793182351CF6700A4CC78 /* CoreDataRequest.swift */,
 				F550D9D7234D03810054F531 /* Persistence.swift */,
@@ -232,6 +238,7 @@
 		F59CE94423411E40007A5303 /* LanguageCardsAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				F5B8A578237F1364004D1C6F /* StateMachineTests */,
 				F56541F8235C65540090020C /* NetworkingTests */,
 				F59669D9234E5979008C65E1 /* PersistenceTests */,
 				F59CE94723411E40007A5303 /* Info.plist */,
@@ -270,11 +277,9 @@
 		F59CE95323412106007A5303 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				B5866CB8236F22CC00D03492 /* DBEntity */,
 				F59CE95523412134007A5303 /* Constants.swift */,
 				F54C62D12350D8C8008D9CAC /* Networking */,
 				F550D9D6234D03110054F531 /* Persistence */,
-				F5A7004D23490EBF00010D9A /* PlainEntity */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				F5F793162351CF5100A4CC78 /* Predicate.swift */,
 				F59EE16F23427CCA009A4BB8 /* Storyboard.swift */,
 				F5A7004B2348ECED00010D9A /* Transformable.swift */,
+				F5B8A576237EFD9D004D1C6F /* StateMachine.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -332,6 +338,14 @@
 				F5A7006023490FDF00010D9A /* WordTranslation.swift */,
 			);
 			path = PlainEntity;
+			sourceTree = "<group>";
+		};
+		F5B8A578237F1364004D1C6F /* StateMachineTests */ = {
+			isa = PBXGroup;
+			children = (
+				F5B8A579237F1385004D1C6F /* StateMachineTests.swift */,
+			);
+			path = StateMachineTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -544,6 +558,7 @@
 				F59EE17023427CCA009A4BB8 /* Storyboard.swift in Sources */,
 				F557DAFA2379CD5200E5BD15 /* TestLanguageCardsApp.xcdatamodeld in Sources */,
 				F59CE95F23412391007A5303 /* WordListViewModel.swift in Sources */,
+				F5B8A577237EFD9D004D1C6F /* StateMachine.swift in Sources */,
 				F5A7004C2348ECED00010D9A /* Transformable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,6 +568,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F53981EB2373221900AEA1B0 /* PredicateTests.swift in Sources */,
+				F5B8A57A237F1385004D1C6F /* StateMachineTests.swift in Sources */,
 				F57F8A03237472E8000F6C79 /* CoreDataPersistenceTests.swift in Sources */,
 				F5D3325D2375B3EB000458F5 /* CoreDataRequstTests.swift in Sources */,
 				F56541FA235C65640090020C /* GetTests.swift in Sources */,
