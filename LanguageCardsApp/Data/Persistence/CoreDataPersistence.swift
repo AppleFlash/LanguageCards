@@ -74,7 +74,7 @@ final class CoreDataPersistence {
     init(coordinatorType: CoordinatorType) {
         self.coordinatorType = coordinatorType
         container = NSPersistentContainer(name: "LanguageCardsApp")
-        container.loadPersistentStores { [unowned self] description, error in
+        container.loadPersistentStores { [unowned self] _, error in
             if let error = error {
                 assertionFailure("Load persistence error \(error)")
             } else {
@@ -150,22 +150,22 @@ final class CoreDataPersistence {
 }
 
 extension CoreDataPersistence: Persistence {
-    func getAll<T: ManagedTransformable>(
+    func getObjects<T: ManagedTransformable>(
         _: T.Type
     ) -> Single<[T]> {
         return getManagedObjects(T.self, nil)
             .map { $0.map { $0.plainObject } }
     }
     
-    func get<T: ManagedTransformable>(
-        _ predicate: Predicate<T.ManagedType>
+    func getObjects<T: ManagedTransformable>(
+        using predicate: Predicate<T.ManagedType>
     ) -> Single<[T]> {
         return getManagedObjects(T.self, predicate)
             .map { $0.map { $0.plainObject } }
     }
     
     func getObject<T: ManagedTransformable>(
-        with predicate: Predicate<T.ManagedType>
+        using predicate: Predicate<T.ManagedType>
     ) -> Single<T?> {
         return getManagedObjects(T.self, predicate)
             .map { $0.first }
@@ -194,7 +194,7 @@ extension CoreDataPersistence: Persistence {
     
     func deleteAll<T: ManagedTransformable>(_: T.Type) -> Single<Void> {
         return backgroundContext.rx.performInQueue()
-            .flatMap { [weak self] context -> Single<[NSManagedObjectID]> in
+            .flatMap { [weak self] _ -> Single<[NSManagedObjectID]> in
                 guard let self = self else {
                     return .error(CoreDataError.persistenceDoesNotExist)
                 }
@@ -213,7 +213,7 @@ extension CoreDataPersistence: Persistence {
         predicate: Predicate<T.ManagedType>
     ) -> Single<Void> {
         return backgroundContext.rx.performInQueue()
-            .flatMap { [weak self] context -> Single<[NSManagedObjectID]> in
+            .flatMap { [weak self] _ -> Single<[NSManagedObjectID]> in
                 guard let self = self else {
                     return .error(CoreDataError.persistenceDoesNotExist)
                 }
@@ -232,7 +232,7 @@ extension CoreDataPersistence: Persistence {
     
     func clear() -> Single<Void> {
         return backgroundContext.rx.performInQueue()
-            .flatMap { [weak self] context -> Single<[NSManagedObjectID]> in
+            .flatMap { [weak self] _ -> Single<[NSManagedObjectID]> in
                 guard let self = self else {
                     return .error(CoreDataError.persistenceDoesNotExist)
                 }
@@ -343,6 +343,7 @@ extension NSManagedObjectContext {
         }
         
         let existingObjects: [T] = getObjects(with: standardPredicate)
+        // делать запрос в базу за айдишниками и проверять совпадает ли количество с existingObjects.count
         if !existingObjects.isEmpty {
             return existingObjects
         } else {
@@ -367,5 +368,41 @@ extension NSManagedObjectContext {
         fetchRequest.returnsObjectsAsFaults = false
         
         return (try? fetch(fetchRequest)) ?? []
+    }
+    
+    func getOrCreateCollection<T: PlainTransformable>(
+        _ predicate: Predicate<T>,
+        using plains: [T.PlainType]
+    ) -> Set<T> {
+        let existingObjects = getOrFetch(with: predicate)
+        let newObjects: [T] = plains
+            .filter { plain in
+                !existingObjects.contains { plain.identifier == $0.identifier }
+            }
+            .map(T.init)
+
+        let objects = existingObjects + newObjects
+        plains.forEach { plain in
+            if let managed = objects.first(where: { plain.identifier == $0.identifier }) {
+                managed.update(from: plain)
+            }
+        }
+
+        return Set(objects)
+    }
+    
+    func getOrCreateObject<T: PlainTransformable>(
+        _ predicate: Predicate<T>,
+        using plain: T.PlainType
+    ) -> T {
+        let object: T
+        if let existingObject = getOrFetch(with: predicate).first {
+            object = existingObject
+        } else {
+            object = T(context: self)
+        }
+        object.update(from: plain)
+        
+        return object
     }
 }
