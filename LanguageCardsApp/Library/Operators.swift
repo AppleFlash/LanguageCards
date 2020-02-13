@@ -108,4 +108,3 @@ extension TypedPredicate {
         return keyPath.predicate(value: value, op: .contains, options: options)
     }
 }
-
